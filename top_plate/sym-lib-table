@@ -1,0 +1,10 @@
+(sym_lib_table
+  (lib (name random-keyboard-parts)(type Legacy)(uri "/Users/Rick/Documents/GitHub/Libraries/random-keyboard-parts.pretty/Schematic Library/random-keyboard-parts.lib")(options "")(descr ""))
+  (lib (name keyboard_parts)(type Legacy)(uri /Users/Rick/Documents/GitHub/Libraries/kicad_lib_tmk-master/keyboard_parts.lib)(options "")(descr ""))
+  (lib (name promicro)(type Legacy)(uri /Users/Rick/Documents/GitHub/Libraries/ProMicroKiCad-master/promicro_library/promicro.lib)(options "")(descr ""))
+  (lib (name component)(type Legacy)(uri /Users/Rick/Documents/GitHub/Libraries/lets-split-pcb-hs-cherry-master/component.lib)(options "")(descr ""))
+  (lib (name lets_split-cache)(type Legacy)(uri /Users/Rick/Documents/GitHub/Libraries/lets-split-pcb-hs-cherry-master/lets_split-cache.lib)(options "")(descr ""))
+  (lib (name acheronSymbols)(type Legacy)(uri /Users/Rick/Documents/GitHub/Libraries/AcheronLibrary-master/symbols/acheronSymbols.lib)(options "")(descr ""))
+  (lib (name shark-cache)(type Legacy)(uri /Users/Rick/Documents/GitHub/SharkPCB-master/kicadFiles/shark-cache.lib)(options "")(descr ""))
+  (lib (name shark-rescue)(type Legacy)(uri /Users/Rick/Documents/GitHub/SharkPCB-master/kicadFiles/shark-rescue.lib)(options "")(descr ""))
+)

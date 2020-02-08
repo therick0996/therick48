@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name random-keyboard-parts)(type KiCad)(uri /Users/Rick/Documents/GitHub/Libraries/random-keyboard-parts.pretty)(options "")(descr ""))
+  (lib (name Artwork)(type KiCad)(uri /Users/Rick/Documents/GitHub/Libraries/Artwork)(options "")(descr ""))
+  (lib (name Keeb_footprints)(type KiCad)(uri /Users/Rick/Documents/GitHub/Footprints/Keeb_footprints.pretty)(options "")(descr ""))
+)
