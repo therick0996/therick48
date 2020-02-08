@@ -29,7 +29,7 @@
     (45 Margin user)
     (46 B.CrtYd user)
     (47 F.CrtYd user)
-    (48 B.Fab user hide)
+    (48 B.Fab user)
     (49 F.Fab user)
   )
 
@@ -62,7 +62,7 @@
     (pad_to_mask_clearance 0.051)
     (solder_mask_min_width 0.25)
     (aux_axis_origin 160.005 72.985)
-    (visible_elements 7FFFEFFF)
+    (visible_elements 7FFFFFFF)
     (pcbplotparams
       (layerselection 0x010fc_ffffffff)
       (usegerberextensions false)
@@ -8251,7 +8251,7 @@
     )
   )
 
-  (gr_text therick_19mm (at 52.288143 91.821) (layer F.SilkS) (tstamp 5E3E553D)
+  (gr_text therick48_19mm (at 52.288143 91.821) (layer F.SilkS) (tstamp 5E3E553D)
     (effects (font (size 1.5 1.5) (thickness 0.2)) (justify left))
   )
   (gr_line (start 273.22 107.16) (end 273.22 38.76) (layer Edge.Cuts) (width 0.05) (tstamp 5E35D972))
