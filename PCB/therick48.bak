@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:therick_19mm-cache
+LIBS:therick-cache
 EELAYER 29 0
 EELAYER END
 $Descr A3 16535 11693
@@ -1770,7 +1770,7 @@ F 3 "~" H 9250 5800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L therick_19mm-rescue:HOLE-lets_split-cache U2
+L lets_split-cache:HOLE U2
 U 1 1 5DE56E92
 P 9400 4250
 F 0 "U2" H 9578 4303 60  0000 L CNN
@@ -2616,7 +2616,7 @@ Wire Notes Line
 Wire Notes Line
 	9100 4650 9100 6000
 $Comp
-L therick_19mm-rescue:HOLE-lets_split-cache U8
+L lets_split-cache:HOLE U8
 U 1 1 5E36C5AD
 P 10100 4250
 F 0 "U8" H 10278 4303 60  0000 L CNN
