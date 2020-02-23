@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:therick-cache
+LIBS:therick48-cache
 EELAYER 29 0
 EELAYER END
 $Descr A3 16535 11693
@@ -2615,19 +2615,6 @@ Wire Notes Line
 	10850 6000 9100 6000
 Wire Notes Line
 	9100 4650 9100 6000
-$Comp
-L lets_split-cache:HOLE U8
-U 1 1 5E36C5AD
-P 10100 4250
-F 0 "U8" H 10278 4303 60  0000 L CNN
-F 1 "HOLE" H 10278 4197 60  0000 L CNN
-F 2 "Artwork:QMKBadgeSmall" H 10100 4250 60  0001 C CNN
-F 3 "" H 10100 4250 60  0001 C CNN
-	1    10100 4250
-	1    0    0    -1  
-$EndComp
-Text Notes 10000 4300 0    50   ~ 0
-QMK
 NoConn ~ 6700 5200
 NoConn ~ 6700 5300
 NoConn ~ 6700 5400

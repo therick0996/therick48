@@ -6,11 +6,11 @@
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x0A0C
-#define DEVICE_VER      0x4444
-#define MANUFACTURER    Your_Mom
-#define PRODUCT         therick
-#define DESCRIPTION     Just another ortho
+#define PRODUCT_ID      0x0001
+#define DEVICE_VER      0x0001
+#define MANUFACTURER    therick
+#define PRODUCT         therick48
+#define DESCRIPTION     Blatant copy of Planck
 
 /* key matrix size */
 #define MATRIX_ROWS 4

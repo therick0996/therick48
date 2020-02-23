@@ -10,6 +10,13 @@
 #define _LWL1		    5
 #define _FN2        6
 
+// Custom keycodes
+enum custom_keycodes {
+  EMAIL = SAFE_RANGE,
+  WEMAIL,
+
+};
+
 // Readability keycodes
 #define _______		  KC_TRNS
 
@@ -29,6 +36,7 @@
 #define LWL1_PSLS	  LT(_LWL1, KC_PSLS)
 #define LWL1_PENT	  LT(_LWL1, KC_PENT)
 #define LWL1_BS		  LT(_LWL1, KC_BSPC)
+#define LWL1_END    LT(_LWL1, KC_END)
 
 // Dual key codes
 #define CTL_A 		  CTL_T(KC_A)
@@ -40,6 +48,7 @@
 #define CTL_HOME	  CTL_T(KC_HOME)
 #define CTL_END		  CTL_T(KC_END)
 #define CTL_SLS		  CTL_T(KC_SLSH)
+#define CTL_VOLU    CTL_T(KC_VOLU)
 
 #define GUI_A 		  LGUI_T(KC_A)
 #define GUI_F 		  LGUI_T(KC_F)
@@ -51,6 +60,7 @@
 #define GUI_END		  LGUI_T(KC_END)
 #define GUI_SLS		  LGUI_T(KC_SLSH)
 #define GUI_BS		  LGUI_T(KC_BSPC)
+#define GUI_MPLY    LGUI_T(KC_MPLY)
 
 #define SFT_S 		  SFT_T(KC_S)
 #define SFT_X		    SFT_T(KC_X)
@@ -63,19 +73,23 @@
 #define SFT_PGDN	  SFT_T(KC_PGDN)
 #define SFT_PGUP	  SFT_T(KC_PGUP)
 #define SFT_CAPS	  SFT_T(KC_CAPSLOCK)
+#define SFT_MUTE    SFT_T(KC_MUTE)
+#define SFT_VOLD    SFT_T(KC_VOLD)
 
 #define ALT_LEFT    ALT_T(KC_LEFT)
 #define ALT_RGHT    ALT_T(KC_RIGHT)
 #define ALT_UP      ALT_T(KC_UP)
+#define ALT_MUTE    LALT_T(KC_MUTE)
+#define ALT_VOLD    LALT_T(KC_VOLD)
 
 #define HPR_SPC     HYPR_T(KC_SPC)
 
-//Screen Captures
+//MacOS Specific Stuff Workarounds
 #define WHLSCR      LGUI(LSFT(KC_3))  //Capture whole screen
 #define PRNTSCR     LGUI(LSFT(KC_4))  //Select screen
 #define PRNTSCRC    LGUI(LSFT(LCTL(KC_4)))  //Select screen copy
-
-#define MSNCTRL     LCTL(KC_UP)
+#define NOTIFCENT   HYPR(KC_M)  //Open notification center
+#define MSNCTRL     LCTL(KC_UP) //Open mission control
 
 #define SA_BS 		  MT(MOD_LSFT | MOD_LALT, KC_BSPC)
 
@@ -89,52 +103,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   Shift   |     Z     |     X     |     C     |     V     |     B     |     N     |     M     |     ,     |     .     |     /     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |    Fn 2   |   Shift   |    GUI    |    GUI    |  Lwr BS   |    BS     |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
+  |    Fn 2   |   Ctrl    |    Alt    |    GUI    |  Lwr BS   |    BS     |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */
 
   [_QW] = LAYOUT_ortho_4x12(
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     KC_A,       KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
-    KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     GUI_SLS,    SFT_ENT,
-    FN2,        KC_LCTL,    KC_LALT,    KC_LGUI,    LWR_BS,     GUI_BS,     HPR_SPC,    RSE_SPC,    CTL_LEFT,   SFT_DOWN,   SFT_UP,     CTL_RGHT
+    KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_ENT,
+    FN2,        KC_LCTL,    KC_LALT,    KC_LGUI,    LWR_BS,     GUI_BS,     HPR_SPC,    RSE_SPC,    CTL_LEFT,   KC_DOWN,    KC_UP,      CTL_RGHT
   ),
 
 /* Lower
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   |           |     (     |     )     |     -     |     =     |    ***    |    ***    |    BS     |     7     |     8     |     9     |     -     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   LWL0    |   Home    |   Pg Dn   |   Pg Up   |    End    |  BS LWL1  |    F4     |    F2     |     4     |     5     |     6     |     +     |
+  |   LWL0    |   Home    |   Pg Dn   |   Pg Up   |    End    |    BS     |    F4     |    F2     |     4     |     5     |     6     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |   Left    |    Down   |    Up     |   Right   |    ***    |   Raise   |   Calc    |     1     |     2     |     3     |   Enter   |
+  |           |   Left    |    Down   |    Up     |   Right   |    ***    |   Raise   | NotifCent |     1     |     2     |     3     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |           |           |   Lower   |           |           |   LWL0    |     0     |     .     |     *     |   / LWL1  |
+  |           |           |           |           |   Lower   |           |           |   LWL0    |     0     |     .     |     *     |     /     |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */
 
   [_LOWER] = LAYOUT_ortho_4x12(
     _______,    KC_LPRN,    KC_RPRN,    KC_MINS,    KC_EQL,     KC_NO,      KC_NO,      KC_BSPC,     KC_P7,     KC_P8,      KC_P9,      KC_PMNS,
-    LWL0_TAB,   CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,    LWL1_BS,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
-    _______,    ALT_LEFT,   SFT_DOWN,   SFT_UP,     ALT_RGHT,   KC_NO,      MO(2),      KC_CALC,     KC_P1,     KC_P2,      KC_P3,      KC_PENT,
+    LWL0_TAB,   KC_HOME,    KC_PGDN,    KC_PGUP,    LWL1_END,   KC_BSPC,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
+    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_NO,      MO(2),      NOTIFCENT,   KC_P1,     KC_P2,      KC_P3,      KC_PENT,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    LWL0_SPC,    KC_P0,     KC_PDOT,    KC_PAST,    KC_PSLS
   ),
 
     /* LWL0
       .-----------------------------------------------------------------------------------------------------------------------------------------------.
-      |           |           |    F13    |    F14    |           |           |           |           |    BS     |     /     |     *     |    Del    |
+      |           |           |           |           |           |           |           |           |    BS     |     /     |     *     |    Del    |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-      |   LWL0    |   Ctrl    |   Shift   |    Del    |    F2     |           |           |           |   Left    |   Down    |     Up    |   Right   |
+      |   LWL0    |   GUI     |   Shift   |    Alt    |    Del    |           |           |           |   Left    |   Down    |     Up    |   Right   |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
       |           |           |           |           |           |           |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-      |           |           |           |           |           |           |           |   LWL0    |           |           |           |   LWL1    |
+      |           |           |           |           |           |           |           |   LWL0    |           |           |           |           |
       '-----------------------------------------------------------------------------------------------------------------------------------------------'
     */
 
       [_LWL0] = LAYOUT_ortho_4x12(
-        _______,    _______,    KC_F13,     KC_F14,     _______,    _______,    _______,    _______,    KC_BSPC,    KC_PSLS,    KC_PAST,    KC_DEL,
-        _______,    KC_LGUI,    KC_LSFT,    KC_DEL,     KC_F2,      _______,    _______,    _______,    CTL_LEFT,   SFT_DOWN,   SFT_UP,     KC_RIGHT,
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,
+        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSPC,    KC_PSLS,    KC_PAST,    KC_DEL,
+        _______,    KC_LGUI,    KC_LSFT,    KC_LALT,    KC_DEL,     _______,    _______,    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,
+        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,
         _______,    _______,    _______,    _______,    _______,    _______,    TG(1),	    _______,    _______,    _______,    _______,    _______
       ),
 
@@ -163,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |     !     |     @     |     #     |     $     |     %     |     ^     |     &     |     *     |     (     |     )     |     _     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |    `      |           |           |           |           |           |           |     [     |     ]     |     \     |           |
+  |           |     `     |           |           |           |           |           |           |     [     |     ]     |     \     |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |  TG(Lwr)  |   Raise   |   Play    |   Vol-    |   Vol+    |   Mute    |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -173,7 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_MINS,    KC_EQL,
     KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,
     _______,    KC_GRAVE,   _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_RBRC,    KC_BSLS,    _______,
-    _______,    _______,    _______,    _______,    _______,    _______,    TG(1),      _______,    KC_MPLY,    KC_VOLD,    KC_VOLU,    KC_MUTE
+    _______,    _______,    _______,    _______,    _______,    _______,    TG(1),      _______,    GUI_MPLY,   SFT_VOLD,   CTL_VOLU,   ALT_MUTE
   ),
 
 /* FN
@@ -201,7 +215,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           | Prnt Scrn | Prnt Sel  | Prt Sel C |           |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |           |   EMAIL   |  WEMAIL   |           |           |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -210,7 +224,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FN2] = LAYOUT_ortho_4x12(
     KC_BRID,    KC_BRIU,    MSNCTRL,    _______,    _______,    _______,    KC_MRWD,    KC_MPLY,    KC_MFFD,    KC_MUTE,    KC_VOLD,    KC_VOLU,
     _______,    WHLSCR,     PRNTSCR,    PRNTSCRC,   _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    EMAIL,      WEMAIL,     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   )
 
@@ -233,7 +247,33 @@ uint16_t get_tapping_term(uint16_t keycode) {
   }
 }
 
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+// Macros
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case EMAIL:
+      if (record->event.pressed) {
+        // when keycode EMAIL is pressed
+        SEND_STRING("rick.c.kremer@gmail.com");
+      } else {
+        // when keycode EMAIL is released
+      }
+      break;
+
+    case WEMAIL:
+      if (record->event.pressed) {
+        // when keycode WEMAIL is pressed
+        SEND_STRING("rkremer@nd.gov");
+      } else {
+        // when keycode WEMAIL is released
+      }
+      break;
+
+  }
+  return true;
+};
+
+
+/*const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
   keyevent_t event = record->event;
     (void)event;
 
@@ -259,3 +299,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void led_set_user(uint8_t usb_led) {
 
 }
+*/
