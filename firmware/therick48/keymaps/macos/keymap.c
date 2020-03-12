@@ -42,8 +42,7 @@ enum {
   LBKTS,
   RBKTS,
   QUOT,
-  EMAIL,
-  MAKE
+  EMAIL
 };
 
 //Tap dance dance states
@@ -109,9 +108,6 @@ void quot_reset (qk_tap_dance_state_t *state, void *user_data);
 
 void email_finished (qk_tap_dance_state_t *state, void *user_data);
 void email_reset (qk_tap_dance_state_t *state, void *user_data);
-
-void make_finished (qk_tap_dance_state_t *state, void *user_data);
-void make_reset (qk_tap_dance_state_t *state, void *user_data);
 
 void lbkts_finished (qk_tap_dance_state_t *state, void *user_data);
 void lbkts_reset (qk_tap_dance_state_t *state, void *user_data);
@@ -231,7 +227,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     KC_A,       KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    TD(QUOT),
     KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   KC_ENT,
-    KC_LGUI,     KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     GUI_BS,     HPR_SPC,    RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
+    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     GUI_BS,     HPR_SPC,    RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
   ),
 
 /* Lower
@@ -255,20 +251,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* LWL0
       .-----------------------------------------------------------------------------------------------------------------------------------------------.
-      |           |           |           |           |           |           |           |           |    BS     |     /     |     *     |    Del    |
+      |           |           |           |           |           |           |           |           |    BS     |           |           |    Del    |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
       |   LWL0    |   GUI     |   Shift   |    Alt    |    Del    |           |           |           |   Left    |   Down    |     Up    |   Right   |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-      |           |           |           |           |           |           |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |
+      |           |           |           |           |           |           |           |   MAKE    |   Home    |   Pg Dn   |   Pg Up   |    End    |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-      |           |           |           |           |           |           |  TG(Lwr)  |   LWL0    |           |           |           |           |
+      |           |           |           |           |   Lower   |           |  TG(Lwr)  |   LWL0    |           |           |           |           |
       '-----------------------------------------------------------------------------------------------------------------------------------------------'
     */
 
       [_LWL0] = LAYOUT_ortho_4x12(
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSPC,    KC_PSLS,    KC_PAST,    KC_DEL,
+        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSPC,    _______,    _______,    KC_DEL,
         _______,    KC_LGUI,    KC_LSFT,    KC_LALT,    KC_DEL,     _______,    _______,    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,
+        _______,    _______,    _______,    _______,    _______,    _______,    _______,    MAKE,       KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,
         _______,    _______,    _______,    _______,    _______,    _______,    TG(1),	    _______,    _______,    _______,    _______,    _______
       ),
 
@@ -367,7 +363,6 @@ uint16_t get_tapping_term(uint16_t keycode) {
 }
 
 // Macros
-/*
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case MAKE:
@@ -381,7 +376,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 };
-*/
 
 // Tap dance stuff
 static xtap quot_state = {
@@ -449,24 +443,6 @@ void email_reset (qk_tap_dance_state_t *state, void *user_data) {
   email_state.state = 0;
 }
 //*************** EMAIL *******************//
-
-//*************** MAKE COMMAND *******************//
-void make_finished (qk_tap_dance_state_t *state, void *user_data) {
-  make_state.state = cur_dance(state); //Use the dance that favors being held
-  switch (make_state.state) {
-    case SINGLE_TAP: register_code(KC_M); break; //send M
-    case TRIPLE_TAP: SEND_STRING("make nori:macos:avrdude"); //send make command
-  }
-}
-
-void make_reset (qk_tap_dance_state_t *state, void *user_data) {
-  switch (make_state.state) {
-    case SINGLE_TAP: unregister_code(KC_M); break; //unregister M
-    case TRIPLE_TAP: ;break;
-  }
-  make_state.state = 0;
-}
-//*************** MAKE COMMAND *******************//
 
 //*************** BRACKETS *******************//
 //Left brackets

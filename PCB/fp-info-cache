@@ -1,4 +1,4 @@
-16493328084752728
+16499662577728728
 acheron_Components
 ACM2012-2P
 
@@ -49630,6 +49630,20 @@ ATMEGA32U4-AU
 44
 44
 Keeb_footprints
+Diode-dual
+
+
+0
+10
+2
+Keeb_footprints
+Diode-dual_Split
+
+
+0
+12
+2
+Keeb_footprints
 D_SOD-123_modified
 SOD-123
 SOD-123
@@ -49658,6 +49672,13 @@ MX100_outline
 0
 0
 Keeb_footprints
+MX100_Split
+
+
+0
+4
+2
+Keeb_footprints
 PIN_HEADER_1x6_OFFSET
 1x6 Header with 42 mil holes offset by 16 mils
 
@@ -49671,6 +49692,13 @@ rick_large
 0
 0
 0
+Keeb_footprints
+TRRS_Splt
+
+
+0
+8
+4
 Keeb_footprints
 TYPE-C-31-M-12
 
