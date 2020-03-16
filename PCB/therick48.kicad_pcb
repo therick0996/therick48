@@ -34,7 +34,7 @@
   )
 
   (setup
-    (last_trace_width 0.4)
+    (last_trace_width 0.25)
     (user_trace_width 0.25)
     (user_trace_width 0.4)
     (trace_clearance 0.13)
@@ -350,7 +350,7 @@
     )
   )
 
-  (module Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder (layer B.Cu) (tedit 5E6A384C) (tstamp 5E6ACC0D)
+  (module Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder (layer B.Cu) (tedit 5E6A384C) (tstamp 5E6B8860)
     (at 89.019 92.425 270)
     (descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
     (tags "capacitor handsolder")
@@ -428,7 +428,7 @@
     )
   )
 
-  (module Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder (layer B.Cu) (tedit 5E6A381D) (tstamp 5DCC4540)
+  (module Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder (layer B.Cu) (tedit 5E6A381D) (tstamp 5E6B854B)
     (at 82.296 92.425 270)
     (descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing), generated with kicad-footprint-generator")
     (tags "capacitor handsolder")
@@ -8223,8 +8223,8 @@
   (segment (start 90.551 83.693) (end 90.551 84.455) (width 0.4) (layer F.Cu) (net 49))
   (segment (start 90.551 81.407) (end 90.551 83.693) (width 0.4) (layer F.Cu) (net 49))
   (segment (start 94.361 76.454) (end 94.361 77.597) (width 0.4) (layer F.Cu) (net 49))
-  (segment (start 85.979 82.169) (end 88.265 84.455) (width 0.4) (layer F.Cu) (net 49) (status 1000000))
-  (segment (start 88.265 84.455) (end 90.551 84.455) (width 0.4) (layer F.Cu) (net 49) (status 1000000))
+  (segment (start 85.979 82.169) (end 88.265 84.455) (width 0.4) (layer F.Cu) (net 49))
+  (segment (start 88.265 84.455) (end 90.551 84.455) (width 0.4) (layer F.Cu) (net 49))
   (segment (start 94.361 77.597) (end 90.551 81.407) (width 0.4) (layer F.Cu) (net 49))
   (segment (start 85.725 52.959) (end 89.535 52.959) (width 0.25) (layer B.Cu) (net 50))
   (segment (start 85.09 50.968) (end 85.09 52.324) (width 0.25) (layer B.Cu) (net 50))

@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:therick64BA_19mm_bottom_plate-cache
+LIBS:therick48_bottom_plate-cache
 EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
@@ -639,4 +639,25 @@ Wire Notes Line
 	2650 4400 1850 4400
 Wire Notes Line
 	1850 4400 1850 2950
+$Comp
+L Mechanical:MountingHole H7
+U 1 1 5EC2B488
+P 3050 3900
+F 0 "H7" H 3150 3946 50  0000 L CNN
+F 1 "MountingHole" H 3150 3855 50  0000 L CNN
+F 2 "random-keyboard-parts:Plate_hole_4mm" H 3050 3900 50  0001 C CNN
+F 3 "~" H 3050 3900 50  0001 C CNN
+	1    3050 3900
+	1    0    0    -1  
+$EndComp
+Text Notes 3000 4150 0    50   ~ 0
+Reset Hole
+Wire Notes Line
+	3700 3750 3700 4200
+Wire Notes Line
+	3700 4200 2900 4200
+Wire Notes Line
+	2900 4200 2900 3750
+Wire Notes Line
+	2900 3750 3700 3750
 $EndSCHEMATC
