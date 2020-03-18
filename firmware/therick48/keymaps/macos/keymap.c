@@ -125,7 +125,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
   [QUOT]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, quot_finished, quot_reset),
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
-  [MAKE]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_finished, make_reset),
+  //[MAKE]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_finished, make_reset),
   [LBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lbkts_finished, lbkts_reset),
   [RBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rbkts_finished, rbkts_reset),
 };
@@ -225,7 +225,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QW] = LAYOUT_ortho_4x12(
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
-    FN_TAB,     KC_A,       KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    TD(QUOT),
+    FN_TAB,     KC_A,       KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   KC_ENT,
     KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     GUI_BS,     HPR_SPC,    RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
   ),
@@ -264,7 +264,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       [_LWL0] = LAYOUT_ortho_4x12(
         _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSPC,    _______,    _______,    KC_DEL,
         _______,    KC_LGUI,    KC_LSFT,    KC_LALT,    KC_DEL,     _______,    _______,    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,    MAKE,       KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,
+        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,
         _______,    _______,    _______,    _______,    _______,    _______,    TG(1),	    _______,    _______,    _______,    _______,    _______
       ),
 
@@ -321,7 +321,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FN] = LAYOUT_ortho_4x12(
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
     _______,    KC_LGUI,    KC_LSFT,    KC_LALT,    KC_DEL,     _______,    _______,    CTL_LEFT,   KC_DOWN,    KC_UP,      CTL_RGHT,   KC_ENT,
-    _______,    _______,    _______,    _______,    MAKE,       _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     _______,
     _______,    _______,    _______,    _______,    KC_ENT,     _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   ),
 
@@ -363,7 +363,7 @@ uint16_t get_tapping_term(uint16_t keycode) {
 }
 
 // Macros
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+/*bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case MAKE:
       if (record->event.pressed) {
@@ -375,7 +375,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
   }
   return true;
-};
+}; */
 
 // Tap dance stuff
 static xtap quot_state = {
@@ -388,10 +388,10 @@ static xtap email_state = {
   .state = 0
 };
 
-static xtap make_state = {
+/*static xtap make_state = {
   .is_press_action = true,
   .state = 0
-};
+};*/
 
 static xtap lbkts_state = {
   .is_press_action = true,
@@ -430,7 +430,7 @@ void email_finished (qk_tap_dance_state_t *state, void *user_data) {
   switch (email_state.state) {
     case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_2); break; //send @
     case DOUBLE_TAP: SEND_STRING("rick.c.kremer@gmail.com"); break; //send email address
-    case TRIPLE_TAP: SEND_STRING("rkremer@nd.gov"); //send work email
+    case TRIPLE_TAP: SEND_STRING("rkremer@bushelpowered.com"); //send work email
   }
 }
 
