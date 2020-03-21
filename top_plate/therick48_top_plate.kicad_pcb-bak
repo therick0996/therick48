@@ -3198,7 +3198,7 @@
   )
 
   (gr_line (start 273.6 38.38) (end 273.6 106.78) (layer Edge.Cuts) (width 0.05) (tstamp 5E3D7FAA))
-  (gr_text therick_19mm (at 254.98 91.58) (layer B.SilkS)
+  (gr_text "therick48 Rev 1.0" (at 254.98 91.58) (layer B.SilkS)
     (effects (font (size 1.5 1.5) (thickness 0.2)) (justify mirror))
   )
   (gr_line (start 270.18 110.2) (end 49.78 110.2) (layer Edge.Cuts) (width 0.05) (tstamp 5E2C87FF))
