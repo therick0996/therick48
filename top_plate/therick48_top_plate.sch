@@ -1,5 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:therick64BA_19mm_top_plate-cache
+LIBS:therick48_top_plate-cache
 EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
@@ -20,7 +20,7 @@ U 1 1 5DAFB0AC
 P 4450 5550
 F 0 "H2" H 4550 5596 50  0000 L CNN
 F 1 "MountingHole" H 4550 5505 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 4450 5550 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 4450 5550 50  0001 C CNN
 F 3 "~" H 4450 5550 50  0001 C CNN
 	1    4450 5550
 	1    0    0    -1  
@@ -31,7 +31,7 @@ U 1 1 5DAFBA19
 P 4450 5350
 F 0 "H1" H 4550 5396 50  0000 L CNN
 F 1 "MountingHole" H 4550 5305 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 4450 5350 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 4450 5350 50  0001 C CNN
 F 3 "~" H 4450 5350 50  0001 C CNN
 	1    4450 5350
 	1    0    0    -1  
@@ -42,7 +42,7 @@ U 1 1 5DAFC41A
 P 4450 5750
 F 0 "H3" H 4550 5796 50  0000 L CNN
 F 1 "MountingHole" H 4550 5705 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 4450 5750 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 4450 5750 50  0001 C CNN
 F 3 "~" H 4450 5750 50  0001 C CNN
 	1    4450 5750
 	1    0    0    -1  
@@ -53,7 +53,7 @@ U 1 1 5DAFCFC0
 P 4450 5950
 F 0 "H4" H 4550 5996 50  0000 L CNN
 F 1 "MountingHole" H 4550 5905 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 4450 5950 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 4450 5950 50  0001 C CNN
 F 3 "~" H 4450 5950 50  0001 C CNN
 	1    4450 5950
 	1    0    0    -1  
@@ -64,7 +64,7 @@ U 1 1 5DAFD908
 P 4450 6150
 F 0 "H5" H 4550 6196 50  0000 L CNN
 F 1 "MountingHole" H 4550 6105 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 4450 6150 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 4450 6150 50  0001 C CNN
 F 3 "~" H 4450 6150 50  0001 C CNN
 	1    4450 6150
 	1    0    0    -1  
@@ -75,7 +75,7 @@ U 1 1 5DAFE1B7
 P 4450 6350
 F 0 "H6" H 4550 6396 50  0000 L CNN
 F 1 "MountingHole" H 4550 6305 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 4450 6350 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 4450 6350 50  0001 C CNN
 F 3 "~" H 4450 6350 50  0001 C CNN
 	1    4450 6350
 	1    0    0    -1  
