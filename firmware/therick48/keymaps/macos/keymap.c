@@ -179,6 +179,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define SFT_S 		  SFT_T(KC_S)
 #define SFT_X		    SFT_T(KC_X)
+#define SFT_W       SFT_T(KC_W)
 #define SFT_SPC		  SFT_T(KC_SPC)
 #define SFT_ENT		  SFT_T(KC_ENT)
 #define SFT_DOT		  SFT_T(KC_DOT)
@@ -191,6 +192,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define SFT_MUTE    SFT_T(KC_MUTE)
 #define SFT_VOLD    SFT_T(KC_VOLD)
 
+#define ALT_Q       LALT_T(KC_Q)
 #define ALT_LEFT    ALT_T(KC_LEFT)
 #define ALT_DN      ALT_T(KC_DOWN)
 #define ALT_UP      ALT_T(KC_UP)
@@ -219,14 +221,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   Shift   |     Z     |     X     |     C     |     V     |     B     |     N     |     M     |     ,     |     .     |     /     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |    GUI    |   Shift   |   Ctrl    |  Option  |  Lwr BS   |    GUI    |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
+  |    GUI    |   Shift   |   Ctrl    |   Option  |  Lwr BS   |    GUI    |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 
   [_QW] = LAYOUT_ortho_4x12(
-    KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
+    KC_ESC,     ALT_Q,      SFT_W,      KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     KC_A,       KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
-    KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   KC_ENT,
+    KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   SFT_ENT,
     KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     GUI_BS,     HPR_SPC,    RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
   ),
 
@@ -243,7 +245,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
   [_LOWER] = LAYOUT_ortho_4x12(
-    _______,    TD(LBKTS),  TD(RBKTS),  TD(LCRLY),  TD(RCRLY),  KC_NO,      KC_NO,      KC_BSPC,     KC_P7,     KC_P8,      KC_P9,      KC_PMNS,
+    _______,    TD(LBKTS),  TD(RBKTS),  KC_MINS,    KC_EQL,     KC_NO,      KC_NO,      KC_BSPC,     KC_P7,     KC_P8,      KC_P9,      KC_PMNS,
     LWL0_TAB,   KC_HOME,    KC_PGDN,    KC_PGUP,    LWL1_END,   KC_BSPC,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
     _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_NO,      _______,    NOTIFCENT,   KC_P1,     KC_P2,      KC_P3,      KC_PENT,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    LWL0_SPC,    KC_P0,     KC_PDOT,    KC_PAST,    KC_PSLS
