@@ -211,6 +211,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define SA_BS 		  MT(MOD_LSFT | MOD_LALT, KC_BSPC)
 
+#define CTL_TAB     LCTL(KC_TAB)
+#define CSFT_TAB    LCTL(LSFT(KC_TAB))
+#define ALT_SUP     LALT(KC_UP)
+#define ALT_SDN     LALT(KC_DOWN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QW QWERTY
@@ -234,7 +239,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Lower
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
-  |           |     (     |     )     |     -     |     =     |    ***    |    ***    |    BS     |     7     |     8     |     9     |     -     |
+  |           |   ( [ {   |   ) ] }   |     -     |     =     |    ***    |    ***    |    BS     |     7     |     8     |     9     |     -     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   LWL0    |   Home    |   Pg Dn   |   Pg Up   |    End    |    BS     |    F4     |    F2     |     4     |     5     |     6     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -264,7 +269,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 
       [_LWL0] = LAYOUT_ortho_4x12(
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSPC,    _______,    _______,    KC_DEL,
+        _______,    ALT_SUP,    ALT_SDN,    CSFT_TAB,   CTL_TAB,    _______,    _______,    _______,    KC_BSPC,    _______,    _______,    KC_DEL,
         _______,    KC_LGUI,    KC_LSFT,    KC_LALT,    KC_DEL,     _______,    _______,    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,
         _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,
         _______,    _______,    _______,    _______,    _______,    _______,    TG(1),	    _______,    _______,    _______,    _______,    _______
