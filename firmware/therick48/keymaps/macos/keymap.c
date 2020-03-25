@@ -9,6 +9,7 @@
 #define _LWL0 		  4
 #define _LWL1		    5
 #define _FN2        6
+#define _FN3        7
 
 // Macro keycodes
 /*
@@ -138,6 +139,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define RAISE 		  MO(_RAISE)
 #define FN 		  	  MO(_FN)
 #define FN2         MO(_FN2)
+#define FN3         MO(_FN3)
 
 #define KC_DQT      LSFT(KC_QUOT)
 
@@ -152,8 +154,10 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define LWL1_PENT	  LT(_LWL1, KC_PENT)
 #define LWL1_BS		  LT(_LWL1, KC_BSPC)
 #define LWL1_END    LT(_LWL1, KC_END)
+#define FN3_BS      LT(_FN3, KC_BSPC)
 
 // Dual key codes
+// Control codes
 #define CTL_A 		  CTL_T(KC_A)
 #define CTL_F 		  CTL_T(KC_F)
 #define CTL_J		    CTL_T(KC_J)
@@ -165,6 +169,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define CTL_SLS		  CTL_T(KC_SLSH)
 #define CTL_VOLU    CTL_T(KC_VOLU)
 
+// GUI codes
 #define GUI_A 		  LGUI_T(KC_A)
 #define GUI_F 		  LGUI_T(KC_F)
 #define GUI_J		    LGUI_T(KC_J)
@@ -176,7 +181,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define GUI_SLS		  LGUI_T(KC_SLSH)
 #define GUI_BS		  LGUI_T(KC_BSPC)
 #define GUI_MPLY    LGUI_T(KC_MPLY)
+#define GUI_ASTR    LGUI_T(KC_ASTR)
 
+// Shift codes
 #define SFT_S 		  SFT_T(KC_S)
 #define SFT_X		    SFT_T(KC_X)
 #define SFT_W       SFT_T(KC_W)
@@ -192,7 +199,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define SFT_MUTE    SFT_T(KC_MUTE)
 #define SFT_VOLD    SFT_T(KC_VOLD)
 
+// Alt codes
 #define ALT_Q       LALT_T(KC_Q)
+#define ALT_A       LALT_T(KC_A)
 #define ALT_LEFT    ALT_T(KC_LEFT)
 #define ALT_DN      ALT_T(KC_DOWN)
 #define ALT_UP      ALT_T(KC_UP)
@@ -215,6 +224,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define CSFT_TAB    LCTL(LSFT(KC_TAB))
 #define ALT_SUP     LALT(KC_UP)
 #define ALT_SDN     LALT(KC_DOWN)
+#define BACK        LGUI(KC_LEFT)
+#define FORWARD     LGUI(KC_RIGHT)
+#define GUI_GRV     LGUI(KC_GRAVE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -232,9 +244,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QW] = LAYOUT_ortho_4x12(
     KC_ESC,     ALT_Q,      SFT_W,      KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
-    FN_TAB,     KC_A,       KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
+    FN_TAB,     ALT_A,      KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   SFT_ENT,
-    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     GUI_BS,     HPR_SPC,    RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
+    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN3_BS,     HPR_SPC,    RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
   ),
 
 /* Lower
@@ -269,7 +281,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 
       [_LWL0] = LAYOUT_ortho_4x12(
-        _______,    ALT_SUP,    ALT_SDN,    CSFT_TAB,   CTL_TAB,    _______,    _______,    _______,    KC_BSPC,    _______,    _______,    KC_DEL,
+        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSPC,    _______,    _______,    KC_DEL,
         _______,    KC_LGUI,    KC_LSFT,    KC_LALT,    KC_DEL,     _______,    _______,    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,
         _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,
         _______,    _______,    _______,    _______,    _______,    _______,    TG(1),	    _______,    _______,    _______,    _______,    _______
@@ -308,7 +320,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT_ortho_4x12(
     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_MINS,    KC_EQL,
-    KC_EXLM,    TD(EMAIL),  KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,
+    KC_EXLM,    TD(EMAIL),  KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    GUI_ASTR,   KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,
     SFT_CAPS,   TD(TILDE),  _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_LBRC,    KC_RBRC,    FN2,
     _______,    _______,    _______,    _______,    _______,    _______,    TG(1),      _______,    GUI_MPLY,   ALT_VOLD,   CTL_VOLU,   KC_MUTE
   ),
@@ -336,7 +348,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   | Bright Up | Bright Dn | Miss Ctrl |           |           |           |  Rewind   |   Play    | Fast Fwd  |   Mute    |  Vol Up   |  Vol Dn   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           | Prnt Scrn | Prnt Sel  | Prt Sel C |           |           |           |           |           |           |           |           |
+  |           | Prnt Scrn | Prt Sel C | Prnt Sel  |            |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |           |           |           |           |           |    FN2    |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -346,10 +358,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FN2] = LAYOUT_ortho_4x12(
     KC_BRID,    KC_BRIU,    MSNCTRL,    _______,    _______,    _______,    KC_MRWD,    KC_MPLY,    KC_MFFD,    KC_MUTE,    KC_VOLD,    KC_VOLU,
-    _______,    WHLSCR,     PRNTSCRC,  PRNTSCR,     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    WHLSCR,     PRNTSCRC,   PRNTSCR,     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
-  )
+  ),
+
+/* FN3
+  .-----------------------------------------------------------------------------------------------------------------------------------------------.
+  |           | www Back  | www Forw  |           |           |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |   GUI `   |  CS Tab   |   C Tab   |  AS Up    |  AS Dn    |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  '-----------------------------------------------------------------------------------------------------------------------------------------------'
+*/ 
+
+  [_FN3] = LAYOUT_ortho_4x12(
+    _______,    BACK,       FORWARD,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    GUI_GRV,    CSFT_TAB,   CTL_TAB,    ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
+  ) 
 
 };
 
@@ -493,3 +524,21 @@ void rbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
 
 
 
+/* FN2
+  .-----------------------------------------------------------------------------------------------------------------------------------------------.
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  '-----------------------------------------------------------------------------------------------------------------------------------------------'
+*/ 
+/*
+  [_FN2] = LAYOUT_ortho_4x12(
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
+  ) */
