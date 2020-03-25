@@ -179,6 +179,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define SFT_S 		  SFT_T(KC_S)
 #define SFT_X		    SFT_T(KC_X)
+#define SFT_W       SFT_T(KC_W)
 #define SFT_SPC		  SFT_T(KC_SPC)
 #define SFT_ENT		  SFT_T(KC_ENT)
 #define SFT_DOT		  SFT_T(KC_DOT)
@@ -191,6 +192,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define SFT_MUTE    SFT_T(KC_MUTE)
 #define SFT_VOLD    SFT_T(KC_VOLD)
 
+#define ALT_Q       LALT_T(KC_Q)
 #define ALT_LEFT    ALT_T(KC_LEFT)
 #define ALT_DN      ALT_T(KC_DOWN)
 #define ALT_UP      ALT_T(KC_UP)
@@ -209,6 +211,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define SA_BS 		  MT(MOD_LSFT | MOD_LALT, KC_BSPC)
 
+#define CTL_TAB     LCTL(KC_TAB)
+#define CSFT_TAB    LCTL(LSFT(KC_TAB))
+#define ALT_SUP     LALT(KC_UP)
+#define ALT_SDN     LALT(KC_DOWN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QW QWERTY
@@ -219,20 +226,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   Shift   |     Z     |     X     |     C     |     V     |     B     |     N     |     M     |     ,     |     .     |     /     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |    GUI    |   Shift   |   Ctrl    |  Option  |  Lwr BS   |    GUI    |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
+  |    GUI    |   Shift   |   Ctrl    |   Option  |  Lwr BS   |    GUI    |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 
   [_QW] = LAYOUT_ortho_4x12(
-    KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
+    KC_ESC,     ALT_Q,      SFT_W,      KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     KC_A,       KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
-    KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   KC_ENT,
+    KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   SFT_ENT,
     KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     GUI_BS,     HPR_SPC,    RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
   ),
 
 /* Lower
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
-  |           |     (     |     )     |     -     |     =     |    ***    |    ***    |    BS     |     7     |     8     |     9     |     -     |
+  |           |   ( [ {   |   ) ] }   |     -     |     =     |    ***    |    ***    |    BS     |     7     |     8     |     9     |     -     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   LWL0    |   Home    |   Pg Dn   |   Pg Up   |    End    |    BS     |    F4     |    F2     |     4     |     5     |     6     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -262,7 +269,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 
       [_LWL0] = LAYOUT_ortho_4x12(
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSPC,    _______,    _______,    KC_DEL,
+        _______,    ALT_SUP,    ALT_SDN,    CSFT_TAB,   CTL_TAB,    _______,    _______,    _______,    KC_BSPC,    _______,    _______,    KC_DEL,
         _______,    KC_LGUI,    KC_LSFT,    KC_LALT,    KC_DEL,     _______,    _______,    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,
         _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,
         _______,    _______,    _______,    _______,    _______,    _______,    TG(1),	    _______,    _______,    _______,    _______,    _______
