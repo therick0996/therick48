@@ -2,12 +2,12 @@
 #include QMK_KEYBOARD_H
 
 // Layers
-#define _QW			    0
-#define _LOWER		  1
-#define _RAISE		  2
-#define _FN			    3
-#define _LWL0 		  4
-#define _LWL1		    5
+#define _QW         0
+#define _LOWER      1
+#define _RAISE      2
+#define _FN         3
+#define _LWL0       4
+#define _LWL1       5
 #define _FN2        6
 #define _FN3        7
 
@@ -122,7 +122,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 //  [RBKTS]   = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RBRC),
   [LCRLY]   = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_LCBR),
   [RCRLY]   = ACTION_TAP_DANCE_DOUBLE(KC_EQL, KC_RCBR),
-  [PIPE]    = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_PIPE),
+  [PIPE]    = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_PIPE),
   [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
   [QUOT]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, quot_finished, quot_reset),
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
@@ -246,7 +246,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     ALT_Q,      SFT_W,      KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     ALT_A,      KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   SFT_ENT,
-    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN3_BS,     HPR_SPC,    RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
+    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN3_BS,     KC_SPC,     RSE_SPC,    GUI_LEFT,   ALT_DN,     ALT_UP,     GUI_RGHT
   ),
 
 /* Lower
@@ -321,7 +321,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = LAYOUT_ortho_4x12(
     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_MINS,    KC_EQL,
     KC_EXLM,    TD(EMAIL),  KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    GUI_ASTR,   KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,
-    SFT_CAPS,   TD(TILDE),  _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_LBRC,    KC_RBRC,    FN2,
+    SFT_CAPS,   TD(TILDE),  _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_RBRC,    KC_BSLS,    FN2,
     _______,    _______,    _______,    _______,    _______,    _______,    TG(1),      _______,    GUI_MPLY,   ALT_VOLD,   CTL_VOLU,   KC_MUTE
   ),
 
