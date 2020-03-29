@@ -118,15 +118,10 @@ void rbkts_reset (qk_tap_dance_state_t *state, void *user_data);
 
 // Tap dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
-//  [LBKTS]   = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LBRC),
-//  [RBKTS]   = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RBRC),
-  [LCRLY]   = ACTION_TAP_DANCE_DOUBLE(KC_MINS, KC_LCBR),
-  [RCRLY]   = ACTION_TAP_DANCE_DOUBLE(KC_EQL, KC_RCBR),
   [PIPE]    = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_PIPE),
   [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
   [QUOT]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, quot_finished, quot_reset),
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
-  //[MAKE]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_finished, make_reset),
   [LBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lbkts_finished, lbkts_reset),
   [RBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rbkts_finished, rbkts_reset),
 };
@@ -274,7 +269,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
       |   LWL0    |   GUI     |   Shift   |    Alt    |    Del    |           |           |           |   Left    |   Down    |     Up    |   Right   |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-      |           |           |           |           |           |           |           |   MAKE    |   Home    |   Pg Dn   |   Pg Up   |    End    |
+      |           |           |           |           |           |           |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
       |           |           |           |           |   Lower   |           |  TG(Lwr)  |   LWL0    |           |           |           |           |
       '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -331,7 +326,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |    Fn     |    GUI    |   Shift   |  Option   |    Del    |           |           |   Left    |    Down   |    Up     |   Right   |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |   WEMAIL  |   EMAIL   |   MAKE    |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
+  |           |           |   WEMAIL  |   EMAIL   |           |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |   Enter   |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -425,11 +420,6 @@ static xtap email_state = {
   .is_press_action = true,
   .state = 0
 };
-
-/*static xtap make_state = {
-  .is_press_action = true,
-  .state = 0
-};*/
 
 static xtap lbkts_state = {
   .is_press_action = true,
