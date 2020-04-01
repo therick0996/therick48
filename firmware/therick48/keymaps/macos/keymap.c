@@ -12,10 +12,9 @@
 #define _FN3        7
 
 // Macro keycodes
-/*
   enum custom_keycodes {
   MAKE = SAFE_RANGE,
-}; */
+};
 
 typedef struct {
   bool is_press_action;
@@ -207,11 +206,12 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define HPR_SPC     HYPR_T(KC_SPC)
 
 // macOS specific stuff
-#define WHLSCR      LGUI(LSFT(KC_3))  //Capture whole screen
-#define PRNTSCR     LGUI(LSFT(KC_4))  //Select screen
-#define PRNTSCRC    LGUI(LSFT(LCTL(KC_4)))  //Select screen copy
-#define NOTIFCENT   HYPR(KC_M)  //Open notification center
-#define MSNCTRL     LCTL(KC_UP) //Open mission control
+#define WHLSCR      LGUI(LSFT(KC_3))  // Capture whole screen
+#define PRNTSCR     LGUI(LSFT(KC_4))  // Select screen
+#define PRNTSCRC    LGUI(LSFT(LCTL(KC_4)))  // Select screen copy
+#define NOTIFCENT   HYPR(KC_M)  // Open notification center
+#define MSNCTRL     LCTL(KC_UP) // Open mission control
+#define CAPS_L      HYPR(KC_TAB) // Caps locl
 
 #define SA_BS 		  MT(MOD_LSFT | MOD_LALT, KC_BSPC)
 
@@ -307,7 +307,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |     !     |     @     |     #     |     $     |     %     |     ^     |     &     |     *     |     (     |     )     |     _     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |    Caps   |     `     |           |           |           |           |           |           |     [     |     ]     |     \     |           |
+  |   Caps    |     `     |           |           |           |           |           |           |     [     |     ]     |     \     |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |  TG(Lwr)  |   Raise   |   Play    |   Vol-    |   Vol+    |   Mute    |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -316,7 +316,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = LAYOUT_ortho_4x12(
     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_MINS,    KC_EQL,
     KC_EXLM,    TD(EMAIL),  KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    GUI_ASTR,   KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,
-    SFT_CAPS,   TD(TILDE),  _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_RBRC,    TD(PIPE),    FN2,
+    CAPS_L,     TD(TILDE),  _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_RBRC,    TD(PIPE),    FN2,
     _______,    _______,    _______,    _______,    _______,    _______,    TG(1),      _______,    GUI_MPLY,   ALT_VOLD,   CTL_VOLU,   KC_MUTE
   ),
 
@@ -326,7 +326,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |    Fn     |    GUI    |   Shift   |  Option   |    Del    |           |           |   Left    |    Down   |    Up     |   Right   |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |   WEMAIL  |   EMAIL   |           |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
+  |           |           |           |           |           |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |   Enter   |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -343,7 +343,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   | Bright Up | Bright Dn | Miss Ctrl |           |           |           |  Rewind   |   Play    | Fast Fwd  |   Mute    |  Vol Up   |  Vol Dn   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           | Prnt Scrn | Prt Sel C | Prnt Sel  |            |           |           |           |           |           |           |           |
+  |           | Prnt Scrn | Prt Sel C | Prnt Sel  |           |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |           |           |           |           |           |    FN2    |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -360,20 +360,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* FN3
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
-  |           | www Back  | www Forw  |           |           |           |           |           |           |           |           |           |
+  |           | www Back  | www Forw  |  CS Tab   |   C Tab   |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   GUI `   |  CS Tab   |   C Tab   |  AS Up    |  AS Dn    |           |           |           |           |           |           |           |
+  |   GUI `   |           |           |  AS Up    |  AS Dn    |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |           |           |           |           |           |           |           |   MAKE    |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 
   [_FN3] = LAYOUT_ortho_4x12(
-    _______,    BACK,       FORWARD,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    GUI_GRV,    CSFT_TAB,   CTL_TAB,    ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    BACK,       FORWARD,    CSFT_TAB,   CTL_TAB,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    GUI_GRV,    _______,    _______,    ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    MAKE,       _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   ) 
 
@@ -396,19 +396,19 @@ uint16_t get_tapping_term(uint16_t keycode) {
 }
 
 // Macros
-/*bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case MAKE:
       if (record->event.pressed) {
         // when keycode is pressed
-        SEND_STRING("make nori:macos:avrdude");
+        SEND_STRING("make therick48:macos:dfu");
       } else {
         // when keycode is released
       }
       break;
   }
   return true;
-}; */
+};
 
 // Tap dance stuff
 static xtap quot_state = {
