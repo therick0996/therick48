@@ -211,17 +211,17 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define PRNTSCRC    LGUI(LSFT(LCTL(KC_4)))  // Select screen copy
 #define NOTIFCENT   HYPR(KC_M)  // Open notification center
 #define MSNCTRL     LCTL(KC_UP) // Open mission control
-#define CAPS_L      HYPR(KC_TAB) // Caps locl
+#define CAPS_L      HYPR(KC_TAB) // Caps lock
 
 #define SA_BS 		  MT(MOD_LSFT | MOD_LALT, KC_BSPC)
 
-#define CTL_TAB     LCTL(KC_TAB)
-#define CSFT_TAB    LCTL(LSFT(KC_TAB))
-#define ALT_SUP     LALT(KC_UP)
-#define ALT_SDN     LALT(KC_DOWN)
-#define BACK        LGUI(KC_LEFT)
-#define FORWARD     LGUI(KC_RIGHT)
-#define GUI_GRV     LGUI(KC_GRAVE)
+#define CTL_TAB     LCTL(KC_TAB) // Go to next tab Chrome
+#define CSFT_TAB    LCTL(LSFT(KC_TAB)) // Go to previous tab Chrome
+#define ALT_SUP     LALT(KC_UP) // Go to next sheet in Sheets
+#define ALT_SDN     LALT(KC_DOWN) // Go to previous sheet in Sheets
+#define BACK        LGUI(KC_LEFT) // Go back in browser
+#define FORWARD     LGUI(KC_RIGHT) // Go forward in browser
+#define GUI_GRV     LGUI(KC_GRAVE) // Switch between windows in same app
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -364,7 +364,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   GUI `   |           |           |  AS Up    |  AS Dn    |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |           |           |           |           |           |   MAKE    |           |           |           |           |
+  |   CAPS    |           |           |           |           |           |           |   MAKE    |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -373,7 +373,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FN3] = LAYOUT_ortho_4x12(
     _______,    BACK,       FORWARD,    CSFT_TAB,   CTL_TAB,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
     GUI_GRV,    _______,    _______,    ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    _______,    _______,    _______,    _______,    _______,    _______,    MAKE,       _______,    _______,    _______,    _______,
+    KC_CAPS,    _______,    _______,    _______,    _______,    _______,    _______,    MAKE,       _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   ) 
 
