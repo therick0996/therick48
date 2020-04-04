@@ -41,7 +41,6 @@ enum {
   // Complex
   LBKTS,
   RBKTS,
-  QUOT,
   EMAIL
 };
 
@@ -103,9 +102,6 @@ int hold_cur_dance (qk_tap_dance_state_t *state) {
 }
 
 //for complex tap dances. Put it here so it can be used in any keymap
-void quot_finished (qk_tap_dance_state_t *state, void *user_data);
-void quot_reset (qk_tap_dance_state_t *state, void *user_data);
-
 void email_finished (qk_tap_dance_state_t *state, void *user_data);
 void email_reset (qk_tap_dance_state_t *state, void *user_data);
 
@@ -119,7 +115,6 @@ void rbkts_reset (qk_tap_dance_state_t *state, void *user_data);
 qk_tap_dance_action_t tap_dance_actions[] = {
   [PIPE]    = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_PIPE),
   [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
-  [QUOT]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, quot_finished, quot_reset),
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
   [LBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lbkts_finished, lbkts_reset),
   [RBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rbkts_finished, rbkts_reset),
@@ -135,19 +130,22 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define FN2         MO(_FN2)
 #define FN3         MO(_FN3)
 
-#define KC_DQT      LSFT(KC_QUOT)
-
 #define LWR_BS 		  LT(_LOWER, KC_BSPC)
+
 #define RSE_SPC 	  LT(_RAISE, KC_SPC)
+
 #define FN_TAB		  LT(_FN, KC_TAB)
 #define FN_ESC		  LT(_FN, KC_ESC)
+
 #define LWL0_TAB	  LT(_LWL0, KC_TAB)
 #define LWL0_ESC	  LT(_LWL0, KC_ESC)
 #define LWL0_SPC 	  LT(_LWL0, KC_SPC)
+
 #define LWL1_PSLS	  LT(_LWL1, KC_PSLS)
 #define LWL1_PENT	  LT(_LWL1, KC_PENT)
 #define LWL1_BS		  LT(_LWL1, KC_BSPC)
 #define LWL1_END    LT(_LWL1, KC_END)
+
 #define FN3_BS      LT(_FN3, KC_BSPC)
 
 // Dual key codes
@@ -225,7 +223,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* QW QWERTY
+/* QWERTY
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   |    Esc    |     Q     |     W     |     E     |     R     |     T     |     Y     |     U     |     I     |     O     |     P     |    Del    |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -411,11 +409,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 // Tap dance stuff
-static xtap quot_state = {
-  .is_press_action = true,
-  .state = 0
-};
-
 static xtap email_state = {
   .is_press_action = true,
   .state = 0
@@ -431,27 +424,6 @@ static xtap rbkts_state = {
   .state = 0
 };
 
-//*************** SUPER QUOTE *******************//
-// Assumption: we don't care about trying to hit '' quickly
-void quot_finished (qk_tap_dance_state_t *state, void *user_data) {
-  quot_state.state = cur_dance(state); //Use the dance that favors being held
-  switch (quot_state.state) {
-    case SINGLE_TAP: register_code(KC_QUOT); break; //send quote
-    case SINGLE_HOLD: register_code(KC_LSFT); break; //hold shift
-    case DOUBLE_TAP: register_code(KC_LSFT); register_code(KC_QUOT); //send double quote
-  }
-}
-
-void quot_reset (qk_tap_dance_state_t *state, void *user_data) {
-  switch (quot_state.state) {
-    case SINGLE_TAP: unregister_code(KC_QUOT); break; //unregister quote
-    case SINGLE_HOLD: unregister_code(KC_LSFT); break; //unregister shift
-    case DOUBLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_QUOT); break;
-  }
-  quot_state.state = 0;
-}
-//*************** SUPER QUOTE *******************//
-
 //*************** EMAIL *******************//
 void email_finished (qk_tap_dance_state_t *state, void *user_data) {
   email_state.state = cur_dance(state); //Use the dance that favors being held
@@ -466,7 +438,7 @@ void email_reset (qk_tap_dance_state_t *state, void *user_data) {
   switch (email_state.state) {
     case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_2); break; //unregister @
     case DOUBLE_TAP: ; break;
-    case TRIPLE_TAP: ;break;
+    case TRIPLE_TAP: ; break;
   }
   email_state.state = 0;
 }
