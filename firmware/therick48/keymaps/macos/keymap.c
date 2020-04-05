@@ -13,6 +13,8 @@
 // Macro keycodes
   enum custom_keycodes {
   MAKE = SAFE_RANGE,
+  INSR,
+  DELR,
 };
 
 typedef struct {
@@ -207,12 +209,10 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define SA_BS 		  MT(MOD_LSFT | MOD_LALT, KC_BSPC)
 
-#define CTL_TAB     LCTL(KC_TAB) // Go to next tab Chrome
-#define CSFT_TAB    LCTL(LSFT(KC_TAB)) // Go to previous tab Chrome
+#define GA_LEFT     LGUI(LALT(KC_LEFT)) // Go to next tab
+#define GA_RIGHT    LGUI(LALT(KC_RIGHT)) // Go to previous tab
 #define ALT_SUP     LALT(KC_UP) // Go to next sheet in Sheets
 #define ALT_SDN     LALT(KC_DOWN) // Go to previous sheet in Sheets
-#define BACK        LGUI(KC_LEFT) // Go back in browser
-#define FORWARD     LGUI(KC_RIGHT) // Go forward in browser
 #define GUI_GRV     LGUI(KC_GRAVE) // Switch between windows in same app
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -352,9 +352,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* FN3
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
-  |           | www Back  | www Forw  |  CS Tab   |   C Tab   |           |           |           |           |           |           |           |
+  |           |  CS Tab   |   C Tab   |   AS Up   |   AS Dn   |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   GUI `   |           |           |  AS Up    |  AS Dn    |           |           |           |           |           |           |           |
+  |   GUI `   |           |           |  Del Row  |  Ins Row  |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   CAPS    |           |           |           |           |           |           |   MAKE    |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -363,8 +363,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */ 
 
   [_FN3] = LAYOUT_ortho_4x12(
-    _______,    BACK,       FORWARD,    CSFT_TAB,   CTL_TAB,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    GUI_GRV,    _______,    _______,    ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    GA_LEFT,   GA_RIGHT,    ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    GUI_GRV,    _______,    _______,    DELR,       INSR,       _______,    _______,    _______,    _______,    _______,    _______,    _______,
     KC_CAPS,    _______,    _______,    _______,    _______,    _______,    _______,    MAKE,       _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   ) 
@@ -387,6 +387,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         // when keycode is released
       }
       break;
+
+     case INSR: // Inserts row into Sheets
+      if (record->event.pressed) { // when keycode is pressed
+        SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "r"); // Ctrl+Alt+i, r
+      } else { // when keycode is released
+      }
+      break;
+
+    case DELR: // Inserts row into Sheets
+      if (record->event.pressed) { // when keycode is pressed
+        SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "d"); // Ctrl+Alt+i, r
+      } else { // when keycode is released
+      }
   }
   return true;
 };
