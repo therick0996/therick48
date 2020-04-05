@@ -1,4 +1,3 @@
-
 #include QMK_KEYBOARD_H
 
 // Layers
@@ -131,21 +130,16 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define FN3         MO(_FN3)
 
 #define LWR_BS 		  LT(_LOWER, KC_BSPC)
-
 #define RSE_SPC 	  LT(_RAISE, KC_SPC)
-
 #define FN_TAB		  LT(_FN, KC_TAB)
 #define FN_ESC		  LT(_FN, KC_ESC)
-
 #define LWL0_TAB	  LT(_LWL0, KC_TAB)
 #define LWL0_ESC	  LT(_LWL0, KC_ESC)
 #define LWL0_SPC 	  LT(_LWL0, KC_SPC)
-
 #define LWL1_PSLS	  LT(_LWL1, KC_PSLS)
 #define LWL1_PENT	  LT(_LWL1, KC_PENT)
 #define LWL1_BS		  LT(_LWL1, KC_BSPC)
 #define LWL1_END    LT(_LWL1, KC_END)
-
 #define FN3_BS      LT(_FN3, KC_BSPC)
 
 // Dual key codes
@@ -223,7 +217,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* QWERTY
+/* QW QWERTY
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   |    Esc    |     Q     |     W     |     E     |     R     |     T     |     Y     |     U     |     I     |     O     |     P     |    Del    |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -382,17 +376,6 @@ const uint16_t PROGMEM fn_actions[] = {
 
 };
 
-uint16_t get_tapping_term(uint16_t keycode) {
-  switch (keycode) {
-    case CTL_T(KC_A):
- 	 return 500;
-	case SFT_T(KC_S):
-	 return 500;
-    default:
-      return TAPPING_TERM;
-  }
-}
-
 // Macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -438,7 +421,7 @@ void email_reset (qk_tap_dance_state_t *state, void *user_data) {
   switch (email_state.state) {
     case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_2); break; //unregister @
     case DOUBLE_TAP: ; break;
-    case TRIPLE_TAP: ; break;
+    case TRIPLE_TAP: ;break;
   }
   email_state.state = 0;
 }
