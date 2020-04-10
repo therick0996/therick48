@@ -29,7 +29,7 @@ enum {
   SINGLE_HOLD =     2,
   DOUBLE_TAP =      3,
   DOUBLE_HOLD =     4,
-  DOUBLE_SINGLE_TAP = 5, //send two single taps
+  DOUBLE_SINGLE_TAP = 5, // Send two single taps
   TRIPLE_TAP =      6,
   TRIPLE_HOLD =     7
 };
@@ -47,7 +47,7 @@ enum {
   EMAIL
 };
 
-//Tap dance dance states
+// Tap dance dance states
 // To activate SINGLE_HOLD, you will need to hold for 200ms first.
 // This tap dance favors keys that are used frequently in typing like 'f'
 int cur_dance (qk_tap_dance_state_t *state) {
@@ -67,8 +67,8 @@ int cur_dance (qk_tap_dance_state_t *state) {
       else return SINGLE_HOLD;
     }
   }
-  //If count = 2, and it has been interrupted - assume that user is trying to type the letter associated
-  //with single tap.
+  // If count = 2, and it has been interrupted - assume that user is trying to type the letter associated
+  // with single tap.
   else if (state->count == 2) {
     if (state->interrupted) return DOUBLE_SINGLE_TAP;
     else if (state->pressed) return DOUBLE_HOLD;
@@ -79,7 +79,7 @@ int cur_dance (qk_tap_dance_state_t *state) {
   else return 8; //magic number. At some point this method will expand to work for more presses
 }
 
-//This works well if you want this key to work as a "fast modifier". It favors being held over being tapped.
+// This works well if you want this key to work as a "fast modifier". It favors being held over being tapped.
 int hold_cur_dance (qk_tap_dance_state_t *state) {
   if (state->count == 1) {
     if (state->interrupted) {
@@ -91,8 +91,8 @@ int hold_cur_dance (qk_tap_dance_state_t *state) {
       else return SINGLE_HOLD;
     }
   }
-  //If count = 2, and it has been interrupted - assume that user is trying to type the letter associated
-  //with single tap.
+  // If count = 2, and it has been interrupted - assume that user is trying to type the letter associated
+  // with single tap.
   else if (state->count == 2) {
     if (state->pressed) return DOUBLE_HOLD;
     else return DOUBLE_TAP;
@@ -101,10 +101,10 @@ int hold_cur_dance (qk_tap_dance_state_t *state) {
     if (!state->pressed) return TRIPLE_TAP;
     else return TRIPLE_HOLD;
   }
-  else return 8; //magic number. At some point this method will expand to work for more presses
+  else return 8; // Magic number. At some point this method will expand to work for more presses
 }
 
-//for complex tap dances. Put it here so it can be used in any keymap
+// For complex tap dances. Put it here so it can be used in any keymap
 void email_finished (qk_tap_dance_state_t *state, void *user_data);
 void email_reset (qk_tap_dance_state_t *state, void *user_data);
 
@@ -206,16 +206,16 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define PRNTSCR     LGUI(LSFT(KC_4))  // Select screen
 #define PRNTSCRC    LGUI(LSFT(LCTL(KC_4)))  // Select screen copy
 #define NOTIFCENT   HYPR(KC_M)  // Open notification center
-#define MSNCTRL     LCTL(KC_UP) // Open mission control
-#define CAPS_L      HYPR(KC_TAB) // Caps lock
+#define MSNCTRL     LCTL(KC_UP)  // Open mission control
+#define CAPS_L      HYPR(KC_TAB)  // Caps lock
 
 #define SA_BS 		  MT(MOD_LSFT | MOD_LALT, KC_BSPC)
 
-#define GA_LEFT     LGUI(LALT(KC_LEFT)) // Go to next tab
-#define GA_RIGHT    LGUI(LALT(KC_RIGHT)) // Go to previous tab
-#define ALT_SUP     LALT(KC_UP) // Go to next sheet in Sheets
-#define ALT_SDN     LALT(KC_DOWN) // Go to previous sheet in Sheets
-#define GUI_GRV     LGUI(KC_GRAVE) // Switch between windows in same app
+#define GA_LEFT     LGUI(LALT(KC_LEFT))  // Go to next tab
+#define GA_RIGHT    LGUI(LALT(KC_RIGHT))  // Go to previous tab
+#define ALT_SUP     LALT(KC_UP)  // Go to next sheet in Sheets
+#define ALT_SDN     LALT(KC_DOWN)  // Go to previous sheet in Sheets
+#define GUI_GRV     LGUI(KC_GRAVE)  // Switch between windows in same app
 #define G_HOME      LGUI(KC_HOME)  // GUI + Home
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
