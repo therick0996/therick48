@@ -384,11 +384,9 @@ const uint16_t PROGMEM fn_actions[] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case MAKE:
-      if (record->event.pressed) {
-        // when keycode is pressed
+      if (record->event.pressed) { // when keycode is pressed
         SEND_STRING("make therick48:macos:dfu");
-      } else {
-        // when keycode is released
+      } else { // when keycode is released
       }
       break;
 

@@ -328,23 +328,9 @@ uint16_t get_tapping_term(uint16_t keycode) {
 // Macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case EMAIL:
-      if (record->event.pressed) { // when keycode is pressed
-        SEND_STRING("rick.c.kremer@gmail.com");
-      } else { // when keycode is released
-      }
-      break;
-
-    case WEMAIL:
-      if (record->event.pressed) { // when keycode is pressed
-        SEND_STRING("rkremer@bushelpowered.com");
-      } else { // when keycode is released
-      }
-      break;
-
     case MAKE:
-      if (record->event.pressed) {  // when keycode is pressed
-        SEND_STRING("qmk compile -kb therick48 -km default");
+      if (record->event.pressed) { // when keycode is pressed
+        SEND_STRING("make therick48:default:dfu");
       } else { // when keycode is released
       }
       break;
@@ -352,14 +338,80 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 };
 
-// Tap dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [LBKTS] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_LBRC),
-  [RBKTS] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN, KC_RBRC),
-  [LCRLY] = ACTION_TAP_DANCE_DOUBLE(KC_COMM, KC_LCBR),
-  [RCRLY] = ACTION_TAP_DANCE_DOUBLE(KC_DOT, KC_RCBR),
-  [PIPE] = ACTION_TAP_DANCE_DOUBLE(KC_SLSH, KC_PIPE),
-  [TILDE] = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE)
+// Tap dance stuff
+static xtap email_state = {
+  .is_press_action = true,
+  .state = 0
 };
+
+static xtap lbkts_state = {
+  .is_press_action = true,
+  .state = 0
+};
+
+static xtap rbkts_state = {
+  .is_press_action = true,
+  .state = 0
+};
+
+//*************** EMAIL *******************//
+void email_finished (qk_tap_dance_state_t *state, void *user_data) {
+  email_state.state = cur_dance(state); //Use the dance that favors being held
+  switch (email_state.state) {
+    case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_2); break; //send @
+    case DOUBLE_TAP: SEND_STRING("rick.c.kremer@gmail.com"); break; //send email address
+    case TRIPLE_TAP: SEND_STRING("rkremer@bushelpowered.com"); //send work email
+  }
+}
+
+void email_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (email_state.state) {
+    case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_2); break; //unregister @
+    case DOUBLE_TAP: ; break;
+    case TRIPLE_TAP: ;break;
+  }
+  email_state.state = 0;
+}
+//*************** EMAIL *******************//
+
+//*************** BRACKETS *******************//
+//Left brackets 
+void lbkts_finished (qk_tap_dance_state_t *state, void *user_data) {
+  lbkts_state.state = cur_dance(state); //Use the dance that favors being held
+  switch (lbkts_state.state) {
+    case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_9); break; // send (
+    case DOUBLE_TAP: register_code(KC_LBRC); break; // send [
+    case TRIPLE_TAP: register_code(KC_LSFT); register_code(KC_LBRC); // send {
+  }
+}
+
+void lbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (lbkts_state.state) {
+    case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_9); break; // unregister (
+    case DOUBLE_TAP: unregister_code(KC_LBRC); break; // unregister [
+    case TRIPLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_LBRC); // unregsister {
+  }
+  lbkts_state.state = 0;
+}
+
+//Right brackets
+void rbkts_finished (qk_tap_dance_state_t *state, void *user_data) {
+  rbkts_state.state = cur_dance(state); //Use the dance that favors being held
+  switch (rbkts_state.state) {
+    case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_0); break; // send (
+    case DOUBLE_TAP: register_code(KC_RBRC); break; // send [
+    case TRIPLE_TAP: register_code(KC_LSFT); register_code(KC_RBRC); // send {
+  }
+}
+
+void rbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (rbkts_state.state) {
+    case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_0); break; // unregister (
+    case DOUBLE_TAP: unregister_code(KC_RBRC); break; // unregister [
+    case TRIPLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_RBRC); // unregsister {
+  }
+  rbkts_state.state = 0;
+}
+//*************** BRACKETS *******************//
 
 
