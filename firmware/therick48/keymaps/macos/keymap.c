@@ -145,6 +145,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define LWL1_BS		  LT(_LWL1, KC_BSPC)
 #define LWL1_END    LT(_LWL1, KC_END)
 #define FN3_BS      LT(_FN3, KC_BSPC)
+#define FN_SPC      LT(_FN, KC_SPC)
 
 // Dual key codes
 // Control codes
@@ -228,7 +229,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   Shift   |     Z     |     X     |     C     |     V     |     B     |     N     |     M     |     ,     |     .     |     /     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |    GUI    |   Shift   |   Ctrl    |   Option  |  Lwr BS   |    GUI    |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
+  |    GUI    |   Shift   |   Ctrl    |   Option  |  Lwr BS   |    GUI    | FN Space  |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 
@@ -236,7 +237,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     ALT_Q,      SFT_W,      KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     ALT_A,      KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    SFT_ENT,
-    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN3_BS,     KC_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
+    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN3_BS,     FN_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    SFT_UP,     GUI_RGHT
   ),
 
 /* Lower

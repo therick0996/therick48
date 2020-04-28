@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     KC_A,       KC_S,       KC_D,       CTL_F,      KC_G,       KC_H,       CTL_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    CTL_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   SFT_ENT,
-    KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR_BS,     KC_LGUI,    SFT_SPC,    RSE_SPC,    CTL_LEFT,   SFT_DOWN,   SFT_UP,     CTL_RGHT
+    KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR_BS,     KC_LGUI,    KC_SPC,    RSE_SPC,    CTL_LEFT,   SFT_DOWN,   SFT_UP,     CTL_RGHT
   ),
 
 /* Lower
@@ -226,14 +226,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case WEMAIL:
       if (record->event.pressed) { // when keycode is pressed
-        SEND_STRING("rkremer@nd.gov");
+        SEND_STRING("rkremer@bushelpowered.com");
       } else { // when keycode is released
       }
       break;
 
     case MAKE:
       if (record->event.pressed) {  // when keycode is pressed
-        SEND_STRING("make nori:default:avrdude");
+        SEND_STRING("qmk compile -kb therick48 -km default");
       } else { // when keycode is released
       }
       break;
