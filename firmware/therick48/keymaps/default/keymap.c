@@ -278,7 +278,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   |    F1     |    F2     |    F3     |    F4     |    F5     |    F6     |    F7     |    F8     |    F9     |   F10     |   F11     |    F12    |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |    Fn     |   Ctrl    |   Shift   |    Del    |    F2     |           |           |   Left    |    Down   |    Up     |   Right   |   Enter   |
+  |    Fn     |   Ctrl    |   Shift   |    Del    |   Del     |           |           |   Left    |    Down   |    Up     |   Right   |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |   Game    |           |   MAKE    |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -288,7 +288,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FN] = LAYOUT_ortho_4x12(
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
-    _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_F2,      _______,    _______,    ALT_LEFT,   KC_DOWN,    KC_UP,      ALT_RGHT,   KC_ENT,
+    _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_DEL,     _______,    _______,    ALT_LEFT,   KC_DOWN,    KC_UP,      ALT_RGHT,   KC_ENT,
     _______,    _______,    _______,    _______,    TD(MAKE),   _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,    _______,
     _______,    _______,    _______,    _______,    KC_ENT,     _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   )
@@ -351,7 +351,7 @@ void make_finished (qk_tap_dance_state_t *state, void *user_data) {
   make_state.state = cur_dance(state); // Use the dance that favors being held
   switch (make_state.state) {
     case SINGLE_TAP: SEND_STRING("make therick48:dfu"); break; // send therick48 make code
-    case DOUBLE_TAP: SEND_STRING("make nori:avrdude"); break; // send nori make code
+    case DOUBLE_TAP: SEND_STRING("make nori:default:avrdude"); break; // send nori make code
   }
 }
 
