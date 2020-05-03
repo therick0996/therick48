@@ -103,6 +103,9 @@ int hold_cur_dance (qk_tap_dance_state_t *state) {
 void email_finished (qk_tap_dance_state_t *state, void *user_data);
 void email_reset (qk_tap_dance_state_t *state, void *user_data);
 
+void make_finished (qk_tap_dance_state_t *state, void *user_data);
+void make_reset (qk_tap_dance_state_t *state, void *user_data);
+
 void lbkts_finished (qk_tap_dance_state_t *state, void *user_data);
 void lbkts_reset (qk_tap_dance_state_t *state, void *user_data);
 
@@ -323,6 +326,11 @@ const uint16_t PROGMEM fn_actions[] = {
 }; */
 
 // Tap dance stuff
+static xtap make_state = {
+  .is_press_action = true,
+  .state = 0
+};
+
 static xtap email_state = {
   .is_press_action = true,
   .state = 0
