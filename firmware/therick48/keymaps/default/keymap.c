@@ -212,9 +212,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_ortho_4x12(
     _______,    TD(LBKTS),  TD(RBKTS),  KC_MINS,    KC_EQL,     KC_NO,      KC_NO,      KC_BSPC,     KC_P7,     KC_P8,      KC_P9,      KC_PMNS,
-    LWL0_TAB,   CTL_HOME,   SFT_PGDN,   SFT_PGUP,   LWL1_END,   KC_BSPC,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
+    LWL0_TAB,   CTL_HOME,   KC_PGDN,    KC_PGUP,    LWL1_END,   KC_BSPC,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
     _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_NO,      _______,    KC_CALC,     KC_P1,     KC_P2,      KC_P3,      KC_PENT,
-    _______,    _______,    _______,    _______,    _______,    _______,    _______,    LWL0_SPC,    KC_P0,     KC_PDOT,    KC_PAST,    LWL1_PSLS
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    LWL0_SPC,    KC_P0,     KC_PDOT,    KC_PAST,    KC_PSLS
   ),
 
     /* LWL0
@@ -363,7 +363,6 @@ void make_reset (qk_tap_dance_state_t *state, void *user_data) {
   make_state.state = 0;
 }
 //*************** MAKE *******************//
-
 
 //*************** EMAIL *******************//
 void email_finished (qk_tap_dance_state_t *state, void *user_data) {

@@ -12,8 +12,7 @@
 
 // Macro keycodes
   enum custom_keycodes {
-  MAKE = SAFE_RANGE,
-  INSR,
+  INSR = SAFE_RANGE,
   DELR,
   INSC,
   DELC
@@ -42,9 +41,10 @@ enum {
   PIPE,
   TILDE,
   // Complex
+  MAKE,
+  EMAIL,
   LBKTS,
-  RBKTS,
-  EMAIL
+  RBKTS
 };
 
 // Tap dance dance states
@@ -321,7 +321,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |    Fn     |    GUI    |   Shift   |  Option   |    Del    |           |           |   Left    |    Down   |    Up     |   Right   |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |           |           |           |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
+  |           |           |           |           |   MAKE    |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |   Enter   |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -330,7 +330,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FN] = LAYOUT_ortho_4x12(
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
     _______,    KC_LGUI,    KC_LSFT,    KC_LALT,    KC_DEL,     _______,    _______,    CTL_LEFT,   KC_DOWN,    KC_UP,      CTL_RGHT,   KC_ENT,
-    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     _______,
+    _______,    _______,    _______,    _______,    TD(MAKE),   _______,    _______,    KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,     _______,
     _______,    _______,    _______,    _______,    KC_ENT,     _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   ),
 
@@ -359,7 +359,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   GUI `   |  Del Col  |  Ins Col  |  Del Row  |  Ins Row  |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   CAPS    |           |           |           |           |           |           |   MAKE    |           |           |           |           |
+  |   CAPS    |           |           |           |           |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -368,7 +368,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FN3] = LAYOUT_ortho_4x12(
     KC_GRAVE,   GA_LEFT,    GA_RIGHT,   ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
     GUI_GRV,    DELC,       INSC,       DELR,       INSR,       _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    KC_CAPS,    _______,    _______,    _______,    _______,    _______,    _______,    MAKE,       _______,    _______,    _______,    _______,
+    KC_CAPS,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   ) 
 
@@ -382,14 +382,7 @@ const uint16_t PROGMEM fn_actions[] = {
 // Macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case MAKE:
-      if (record->event.pressed) { // when keycode is pressed
-        SEND_STRING("make therick48:macos:dfu");
-      } else { // when keycode is released
-      }
-      break;
-
-     case INSR: // Inserts row into Sheets
+    case INSR: // Inserts row into Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "r"); // Ctrl+Alt+i, r
       } else { // when keycode is released
@@ -421,6 +414,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 // Tap dance stuff
+static xtap make_state = {
+  .is_press_action = true,
+  .state = 0
+};
+
 static xtap email_state = {
   .is_press_action = true,
   .state = 0
@@ -435,6 +433,24 @@ static xtap rbkts_state = {
   .is_press_action = true,
   .state = 0
 };
+
+//*************** MAKE *******************//
+void make_finished (qk_tap_dance_state_t *state, void *user_data) {
+  make_state.state = cur_dance(state); // Use the dance that favors being held
+  switch (make_state.state) {
+    case SINGLE_TAP: SEND_STRING("make therick48:dfu"); break; // send therick48 make code
+    case DOUBLE_TAP: SEND_STRING("make nori:avrdude"); break; // send nori make code
+  }
+}
+
+void make_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (make_state.state) {
+    case SINGLE_TAP: ; break;
+    case DOUBLE_TAP: ; break;
+  }
+  make_state.state = 0;
+}
+//*************** MAKE *******************//
 
 //*************** EMAIL *******************//
 void email_finished (qk_tap_dance_state_t *state, void *user_data) {
