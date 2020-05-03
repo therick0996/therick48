@@ -9,9 +9,9 @@
 #define _LWL1		    5
 
 // Macro keycodes
-enum custom_keycodes {
+/* enum custom_keycodes {
   MAKE = SAFE_RANGE,
-};
+}; */
 
 typedef struct {
   bool is_press_action;
@@ -36,9 +36,10 @@ enum {
   PIPE,
   TILDE,
   // Complex
+  MAKE,
+  EMAIL,
   LBKTS,
-  RBKTS,
-  EMAIL
+  RBKTS
 };
 
 // Tap dance dance states
@@ -108,11 +109,14 @@ void lbkts_reset (qk_tap_dance_state_t *state, void *user_data);
 void rbkts_finished (qk_tap_dance_state_t *state, void *user_data);
 void rbkts_reset (qk_tap_dance_state_t *state, void *user_data);
 
+
+
 // Tap dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   [PIPE]    = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_PIPE),
   [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
+  [MAKE]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_finished, make_reset),  
   [LBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lbkts_finished, lbkts_reset),
   [RBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rbkts_finished, rbkts_reset),
 };
@@ -187,7 +191,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT_ortho_4x12(
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     KC_A,       KC_S,       KC_D,       CTL_F,      KC_G,       KC_H,       CTL_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
-    KC_LSFT,    CTL_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     TD(PIPE),   SFT_ENT,
+    KC_LSFT,    CTL_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    SFT_ENT,
     KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR_BS,     KC_LGUI,    KC_SPC,     RSE_SPC,    CTL_LEFT,   SFT_DOWN,   SFT_UP,     CTL_RGHT
   ),
 
@@ -254,7 +258,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |     !     |     @     |     #     |     $     |     %     |     ^     |     &     |     *     |     (     |     )     |     _     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   Caps    |           |     `     |           |           |           |  Insert   |   Pr Scr  |     [     |     ]     |     \     |           |
+  |   Caps    |           |     `     |           |           |           |  Insert   |   Pr Scr  |     [     |     ]     |     \ |   |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |  TG(Lwr)  |   Raise   |   Play    |   Vol-    |   Vol+    |   Mute    |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -282,7 +286,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FN] = LAYOUT_ortho_4x12(
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
     _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_F2,      _______,    _______,    ALT_LEFT,   KC_DOWN,    KC_UP,      ALT_RGHT,   KC_ENT,
-    _______,    _______,    _______,    _______,    MAKE,       _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,    _______,
+    _______,    _______,    _______,    _______,    TD(MAKE),   _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,    _______,
     _______,    _______,    _______,    _______,    KC_ENT,     _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   )
 
@@ -294,7 +298,7 @@ const uint16_t PROGMEM fn_actions[] = {
 };
 
 
-uint16_t get_tapping_term(uint16_t keycode) {
+/* uint16_t get_tapping_term(uint16_t keycode) {
   switch (keycode) {
     case CTL_T(KC_A):
  	 return 500;
@@ -303,10 +307,10 @@ uint16_t get_tapping_term(uint16_t keycode) {
     default:
       return TAPPING_TERM;
   }
-}
+} */ 
 
 // Macros
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+/* bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case MAKE:
       if (record->event.pressed) { // when keycode is pressed
@@ -316,7 +320,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
   }
   return true;
-};
+}; */
 
 // Tap dance stuff
 static xtap email_state = {
@@ -334,30 +338,49 @@ static xtap rbkts_state = {
   .state = 0
 };
 
+//*************** MAKE *******************//
+void make_finished (qk_tap_dance_state_t *state, void *user_data) {
+  make_state.state = cur_dance(state); // Use the dance that favors being held
+  switch (make_state.state) {
+    case SINGLE_TAP: SEND_STRING("make therick48:dfu"); break; // send therick48 make code
+    case DOUBLE_TAP: SEND_STRING("make nori:avrdude"); break; // send nori make code
+  }
+}
+
+void make_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (make_state.state) {
+    case SINGLE_TAP: ; break;
+    case DOUBLE_TAP: ; break;
+  }
+  make_state.state = 0;
+}
+//*************** MAKE *******************//
+
+
 //*************** EMAIL *******************//
 void email_finished (qk_tap_dance_state_t *state, void *user_data) {
-  email_state.state = cur_dance(state); //Use the dance that favors being held
+  email_state.state = cur_dance(state); // Use the dance that favors being held
   switch (email_state.state) {
     case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_2); break; //send @
-    case DOUBLE_TAP: SEND_STRING("rick.c.kremer@gmail.com"); break; //send email address
-    case TRIPLE_TAP: SEND_STRING("rkremer@bushelpowered.com"); //send work email
+    case DOUBLE_TAP: SEND_STRING("rick.c.kremer@gmail.com"); break; // send email address
+    case TRIPLE_TAP: SEND_STRING("rkremer@bushelpowered.com"); // send work email
   }
 }
 
 void email_reset (qk_tap_dance_state_t *state, void *user_data) {
   switch (email_state.state) {
-    case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_2); break; //unregister @
+    case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_2); break; // unregister @
     case DOUBLE_TAP: ; break;
-    case TRIPLE_TAP: ;break;
+    case TRIPLE_TAP: ; break;
   }
   email_state.state = 0;
 }
 //*************** EMAIL *******************//
 
-//*************** BRACKETS *******************//
-//Left brackets 
+//************* BRACKETS ******************//
+// Left brackets 
 void lbkts_finished (qk_tap_dance_state_t *state, void *user_data) {
-  lbkts_state.state = cur_dance(state); //Use the dance that favors being held
+  lbkts_state.state = cur_dance(state); // Use the dance that favors being held
   switch (lbkts_state.state) {
     case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_9); break; // send (
     case DOUBLE_TAP: register_code(KC_LBRC); break; // send [
@@ -374,7 +397,7 @@ void lbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
   lbkts_state.state = 0;
 }
 
-//Right brackets
+// Right brackets
 void rbkts_finished (qk_tap_dance_state_t *state, void *user_data) {
   rbkts_state.state = cur_dance(state); //Use the dance that favors being held
   switch (rbkts_state.state) {
@@ -392,6 +415,25 @@ void rbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
   }
   rbkts_state.state = 0;
 }
-//*************** BRACKETS *******************//
+//************* BRACKETS ******************//
 
 
+
+/* FN2
+  .-----------------------------------------------------------------------------------------------------------------------------------------------.
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  '-----------------------------------------------------------------------------------------------------------------------------------------------'
+*/ 
+/*
+  [_FN2] = LAYOUT_ortho_4x12(
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
+  ) */

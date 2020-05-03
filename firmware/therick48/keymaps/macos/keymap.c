@@ -438,7 +438,7 @@ static xtap rbkts_state = {
 
 //*************** EMAIL *******************//
 void email_finished (qk_tap_dance_state_t *state, void *user_data) {
-  email_state.state = cur_dance(state); //Use the dance that favors being held
+  email_state.state = cur_dance(state); // Use the dance that favors being held
   switch (email_state.state) {
     case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_2); break; //send @
     case DOUBLE_TAP: SEND_STRING("rick.c.kremer@gmail.com"); break; //send email address
@@ -450,16 +450,16 @@ void email_reset (qk_tap_dance_state_t *state, void *user_data) {
   switch (email_state.state) {
     case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_2); break; //unregister @
     case DOUBLE_TAP: ; break;
-    case TRIPLE_TAP: ;break;
+    case TRIPLE_TAP: ; break;
   }
   email_state.state = 0;
 }
 //*************** EMAIL *******************//
 
-//*************** BRACKETS *******************//
-//Left brackets 
+//************* BRACKETS ******************//
+// Left brackets 
 void lbkts_finished (qk_tap_dance_state_t *state, void *user_data) {
-  lbkts_state.state = cur_dance(state); //Use the dance that favors being held
+  lbkts_state.state = cur_dance(state); // Use the dance that favors being held
   switch (lbkts_state.state) {
     case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_9); break; // send (
     case DOUBLE_TAP: register_code(KC_LBRC); break; // send [
@@ -476,9 +476,9 @@ void lbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
   lbkts_state.state = 0;
 }
 
-//Right brackets
+// Right brackets
 void rbkts_finished (qk_tap_dance_state_t *state, void *user_data) {
-  rbkts_state.state = cur_dance(state); //Use the dance that favors being held
+  rbkts_state.state = cur_dance(state); // Use the dance that favors being held
   switch (rbkts_state.state) {
     case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_0); break; // send (
     case DOUBLE_TAP: register_code(KC_RBRC); break; // send [
@@ -494,7 +494,7 @@ void rbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
   }
   rbkts_state.state = 0;
 }
-//*************** BRACKETS *******************//
+//************* BRACKETS ******************//
 
 
 
