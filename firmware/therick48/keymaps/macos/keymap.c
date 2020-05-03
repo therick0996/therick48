@@ -206,7 +206,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define WHLSCR      LGUI(LSFT(KC_3))  // Capture whole screen
 #define PRNTSCR     LGUI(LSFT(KC_4))  // Select screen
 #define PRNTSCRC    LGUI(LSFT(LCTL(KC_4)))  // Select screen copy
-#define NOTIFCENT   HYPR(KC_M)  // Open notification center
 #define MSNCTRL     LCTL(KC_UP)  // Open mission control
 #define CAPS_L      HYPR(KC_TAB)  // Caps lock
 
@@ -246,7 +245,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   LWL0    |   Home    |   Pg Dn   |   Pg Up   |    End    |    BS     |    F4     |    F2     |     4     |     5     |     6     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |   Left    |    Down   |    Up     |   Right   |    ***    |           | NotifCent |     1     |     2     |     3     |   Enter   |
+  |           |   Left    |    Down   |    Up     |   Right   |    ***    |           |           |     1     |     2     |     3     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |   Lower   |           |           |   LWL0    |     0     |     .     |     *     |     /     |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -255,7 +254,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LOWER] = LAYOUT_ortho_4x12(
     _______,    TD(LBKTS),  TD(RBKTS),  KC_MINS,    KC_EQL,     KC_NO,      KC_NO,      KC_BSPC,     KC_P7,     KC_P8,      KC_P9,      KC_PMNS,
     LWL0_TAB,   GUI_HOME,   KC_PGDN,    KC_PGUP,    LWL1_END,   KC_BSPC,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
-    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_NO,      _______,    NOTIFCENT,   KC_P1,     KC_P2,      KC_P3,      KC_PENT,
+    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_NO,      _______,    _______,     KC_P1,     KC_P2,      KC_P3,      KC_PENT,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    LWL0_SPC,    KC_P0,     KC_PDOT,    KC_PAST,    KC_PSLS
   ),
 
@@ -312,7 +311,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = LAYOUT_ortho_4x12(
     KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       KC_MINS,    KC_EQL,
     KC_EXLM,    TD(EMAIL),  KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,
-    CAPS_L,     TD(TILDE),  _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_RBRC,    TD(PIPE),    FN2,
+    CAPS_L,     TD(TILDE),  _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_RBRC,    TD(PIPE),   FN2,
     _______,    _______,    _______,    _______,    _______,    _______,    TG(1),      _______,    GUI_MPLY,   ALT_VOLD,   CTL_VOLU,   KC_MUTE
   ),
 
