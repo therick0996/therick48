@@ -383,28 +383,28 @@ const uint16_t PROGMEM fn_actions[] = {
 // Macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case INSR: // Inserts row into Sheets
+    case INSR: // Insert row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "r"); // Ctrl+Alt+i, r
       } else { // when keycode is released
       }
       break;
 
-    case DELR: // Inserts row into Sheets
+    case DELR: // Delete row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "d"); // Ctrl+Alt+e, d
       } else { // when keycode is released
       }
       break;
 
-    case INSC: // Inserts row into Sheets
+    case INSC: // Insert column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "c"); // Ctrl+Alt+i, c
       } else { // when keycode is released
       }
       break;    
 
-    case DELC: // Inserts row into Sheets
+    case DELC: // Delete column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "e"); // Ctrl+Alt+e, e
       } else { // when keycode is released
