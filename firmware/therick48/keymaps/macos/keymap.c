@@ -155,6 +155,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define CTL_Z		    CTL_T(KC_Z)
 #define CTL_LEFT	  CTL_T(KC_LEFT)
 #define CTL_RGHT 	  CTL_T(KC_RIGHT)
+#define CTL_DOWN    CTL_T(KC_DOWN)
 #define CTL_HOME	  CTL_T(KC_HOME)
 #define CTL_END		  CTL_T(KC_END)
 #define CTL_SLS		  CTL_T(KC_SLSH)
@@ -236,7 +237,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     ALT_Q,      SFT_W,      KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     ALT_A,      KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    SFT_ENT,
-    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN3_BS,     FN_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    SFT_UP,     GUI_RGHT
+    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN3_BS,     FN_SPC,     RSE_SPC,    ALT_LEFT,   CTL_DOWN,   SFT_UP,     GUI_RGHT
   ),
 
 /* Lower
@@ -382,28 +383,28 @@ const uint16_t PROGMEM fn_actions[] = {
 // Macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case INSR: // Inserts row into Sheets
+    case INSR: // Insert row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "r"); // Ctrl+Alt+i, r
       } else { // when keycode is released
       }
       break;
 
-    case DELR: // Inserts row into Sheets
+    case DELR: // Delete row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "d"); // Ctrl+Alt+e, d
       } else { // when keycode is released
       }
       break;
 
-    case INSC: // Inserts row into Sheets
+    case INSC: // Insert column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "c"); // Ctrl+Alt+i, c
       } else { // when keycode is released
       }
       break;    
 
-    case DELC: // Inserts row into Sheets
+    case DELC: // Delete column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "e"); // Ctrl+Alt+e, e
       } else { // when keycode is released
