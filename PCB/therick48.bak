@@ -1720,7 +1720,7 @@ U 1 1 5DAFBA19
 P 9250 4800
 F 0 "H1" H 9350 4850 50  0000 L CNN
 F 1 "MountingHole" H 9350 4755 50  0000 L CNN
-F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 4800 50  0001 C CNN
+F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 4800 50  0001 C CNN
 F 3 "~" H 9250 4800 50  0001 C CNN
 	1    9250 4800
 	1    0    0    -1  
@@ -1731,7 +1731,7 @@ U 1 1 5DAFC41A
 P 9250 5200
 F 0 "H3" H 9350 5246 50  0000 L CNN
 F 1 "MountingHole" H 9350 5155 50  0000 L CNN
-F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 5200 50  0001 C CNN
+F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 5200 50  0001 C CNN
 F 3 "~" H 9250 5200 50  0001 C CNN
 	1    9250 5200
 	1    0    0    -1  
@@ -1742,7 +1742,7 @@ U 1 1 5DAFCFC0
 P 9250 5400
 F 0 "H4" H 9350 5446 50  0000 L CNN
 F 1 "MountingHole" H 9350 5355 50  0000 L CNN
-F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 5400 50  0001 C CNN
+F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 5400 50  0001 C CNN
 F 3 "~" H 9250 5400 50  0001 C CNN
 	1    9250 5400
 	1    0    0    -1  
@@ -1753,7 +1753,7 @@ U 1 1 5DAFD908
 P 9250 5600
 F 0 "H5" H 9350 5646 50  0000 L CNN
 F 1 "MountingHole" H 9350 5555 50  0000 L CNN
-F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 5600 50  0001 C CNN
+F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 5600 50  0001 C CNN
 F 3 "~" H 9250 5600 50  0001 C CNN
 	1    9250 5600
 	1    0    0    -1  
@@ -1764,7 +1764,7 @@ U 1 1 5DAFE1B7
 P 9250 5800
 F 0 "H6" H 9350 5846 50  0000 L CNN
 F 1 "MountingHole" H 9350 5755 50  0000 L CNN
-F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 5800 50  0001 C CNN
+F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 5800 50  0001 C CNN
 F 3 "~" H 9250 5800 50  0001 C CNN
 	1    9250 5800
 	1    0    0    -1  
@@ -2512,7 +2512,7 @@ U 1 1 5DDD64AC
 P 9250 5000
 F 0 "H2" H 9350 5050 50  0000 L CNN
 F 1 "MountingHole" H 9350 4955 50  0000 L CNN
-F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 5000 50  0001 C CNN
+F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 5000 50  0001 C CNN
 F 3 "~" H 9250 5000 50  0001 C CNN
 	1    9250 5000
 	1    0    0    -1  

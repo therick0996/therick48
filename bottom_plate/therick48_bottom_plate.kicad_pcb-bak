@@ -5,7 +5,7 @@
     (drawings 20)
     (tracks 0)
     (zones 0)
-    (modules 55)
+    (modules 56)
     (nets 1)
   )
 
@@ -112,6 +112,18 @@
     (via_drill 0.5)
     (uvia_dia 0.5)
     (uvia_drill 0.2)
+  )
+
+  (module random-keyboard-parts:Plate_hole_4mm (layer F.Cu) (tedit 5DBC5A61) (tstamp 5E73E4C1)
+    (at 122.4153 47.9679)
+    (path /5EC2B488)
+    (fp_text reference H7 (at -0.0127 1.2065) (layer Dwgs.User) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_text value MountingHole (at 0 -0.5) (layer F.Fab)
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (pad "" np_thru_hole circle (at 0.0127 -1.9939) (size 4 4) (drill 4) (layers *.Cu *.Mask))
   )
 
   (module Keeb_footprints:MX100_outline (layer F.Cu) (tedit 5E2C8AC5) (tstamp 5E35ACBA)
