@@ -2528,23 +2528,12 @@ F 3 "~" H 4100 4400 50  0001 C CNN
 	1    4100 4400
 	0    1    1    0   
 $EndComp
-$Comp
-L Connector:AVR-ISP-6 J2
-U 1 1 5E280E11
-P 5700 6800
-F 0 "J2" V 5283 6850 50  0000 C CNN
-F 1 "AVR-ISP-6" V 5374 6850 50  0000 C CNN
-F 2 "Keeb_footprints:PIN_HEADER_1x6_OFFSET" V 5450 6850 50  0001 C CNN
-F 3 " ~" H 4425 6250 50  0001 C CNN
-	1    5700 6800
-	0    1    1    0   
-$EndComp
 Text GLabel 5800 7200 3    50   Input ~ 0
-col4
-Text GLabel 5900 7200 3    50   Input ~ 0
-col3
+col10
 Text GLabel 5700 7200 3    50   Input ~ 0
-col5
+col11
+Text GLabel 5600 7200 3    50   Input ~ 0
+col9
 $Comp
 L power:GND #PWR0121
 U 1 1 5E286965
@@ -2566,9 +2555,9 @@ Wire Notes Line
 	4850 6250 4850 7700
 Text GLabel 4050 5250 0    50   Input ~ 0
 ISP_Reset
-Text GLabel 5600 7200 3    50   Input ~ 0
+Text GLabel 5900 7200 3    50   Input ~ 0
 ISP_Reset
-Text Notes 5950 7650 0    50   ~ 0
+Text Notes 5050 7650 0    50   ~ 0
 ISP Flashing
 Wire Notes Line
 	6550 7700 4950 7700
@@ -2728,4 +2717,15 @@ Wire Notes Line
 	10850 5650 9100 5650
 Text Notes 9700 6650 0    50   ~ 0
 therick Holes
+$Comp
+L Connector:AVR-ISP-6_mod J2
+U 1 1 5EC003A1
+P 5700 6800
+F 0 "J2" V 5283 6850 50  0000 C CNN
+F 1 "AVR-ISP-6_mod" V 5374 6850 50  0000 C CNN
+F 2 "Keeb_footprints:PIN_HEADER_1x6_OFFSET" V 5450 6850 50  0001 C CNN
+F 3 " ~" H 4425 6250 50  0001 C CNN
+	1    5700 6800
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
