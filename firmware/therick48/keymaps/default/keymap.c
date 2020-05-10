@@ -36,7 +36,8 @@ enum {
   PIPE,
   TILDE,
   // Complex
-  MAKE,
+  MAKE1,
+  MAKE2,
   EMAIL,
   LBKTS,
   RBKTS
@@ -100,11 +101,14 @@ int hold_cur_dance (qk_tap_dance_state_t *state) {
 }
 
 // For complex tap dances. Put it here so it can be used in any keymap
+void make_therick48_finished (qk_tap_dance_state_t *state, void *user_data);
+void make_therick48_reset (qk_tap_dance_state_t *state, void *user_data);
+
+void make_nori_finished (qk_tap_dance_state_t *state, void *user_data);
+void make_nori_reset (qk_tap_dance_state_t *state, void *user_data);
+
 void email_finished (qk_tap_dance_state_t *state, void *user_data);
 void email_reset (qk_tap_dance_state_t *state, void *user_data);
-
-void make_finished (qk_tap_dance_state_t *state, void *user_data);
-void make_reset (qk_tap_dance_state_t *state, void *user_data);
 
 void lbkts_finished (qk_tap_dance_state_t *state, void *user_data);
 void lbkts_reset (qk_tap_dance_state_t *state, void *user_data);
@@ -119,7 +123,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [PIPE]    = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_PIPE),
   [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
-  [MAKE]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_finished, make_reset),  
+  [MAKE1]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_therick48_finished, make_therick48_reset),
+  [MAKE2]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_nori_finished, make_nori_reset),
   [LBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lbkts_finished, lbkts_reset),
   [RBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rbkts_finished, rbkts_reset),
 };
@@ -202,7 +207,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   |           |   ( [ {   |   ) ] }   |     -     |     =     |    ***    |    ***    |    BS     |     7     |     8     |     9     |     -     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   LWL0    |   Home    |   Pg Dn   |   Pg Up   | End LWL1  |     BS    |    F4     |    F2     |     4     |     5     |     6     |     +     |
+  |   LWL0    |   Home    |   Pg Dn   |   Pg Up   | End LWL1  |    BS     |    F4     |    F2     |     4     |     5     |     6     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |   Left    |    Down   |    Up     |   Right   |    ***    |           |   Calc    |     1     |     2     |     3     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -280,7 +285,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |    Fn     |   Ctrl    |   Shift   |    Del    |   Del     |           |           |   Left    |    Down   |    Up     |   Right   |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |   Game    |           |   MAKE    |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
+  |           |           |   Game    |   MAKE1   |   MAKE2   |           |           |   Home    |   Pg Dn   |   Pg Up   |    End    |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |   Enter   |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -289,7 +294,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FN] = LAYOUT_ortho_4x12(
     KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     KC_F11,     KC_F12,
     _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_DEL,     _______,    _______,    ALT_LEFT,   KC_DOWN,    KC_UP,      ALT_RGHT,   KC_ENT,
-    _______,    _______,    _______,    _______,    TD(MAKE),   _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,    _______,
+    _______,    _______,    _______,    TD(MAKE1),  TD(MAKE2),  _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,    _______,
     _______,    _______,    _______,    _______,    KC_ENT,     _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   )
 
@@ -326,7 +331,12 @@ const uint16_t PROGMEM fn_actions[] = {
 }; */
 
 // Tap dance stuff
-static xtap make_state = {
+static xtap make_therick48_state = {
+  .is_press_action = true,
+  .state = 0
+};
+
+static xtap make_nori_state = {
   .is_press_action = true,
   .state = 0
 };
@@ -347,20 +357,36 @@ static xtap rbkts_state = {
 };
 
 //*************** MAKE *******************//
-void make_finished (qk_tap_dance_state_t *state, void *user_data) {
-  make_state.state = cur_dance(state); // Use the dance that favors being held
-  switch (make_state.state) {
-    case SINGLE_TAP: SEND_STRING("make therick48:dfu"); break; // send therick48 make code
-    case DOUBLE_TAP: SEND_STRING("make nori:default:avrdude"); break; // send nori make code
+void make_therick48_finished (qk_tap_dance_state_t *state, void *user_data) {
+  make_therick48_state.state = cur_dance(state); // Use the dance that favors being held
+  switch (make_therick48_state.state) {
+    case SINGLE_TAP: SEND_STRING("make therick48:default:dfu"); break; // send therick48 default make code
+    case DOUBLE_TAP: SEND_STRING("make therick48:macos:avrdude"); break; // send therick48 macos make code
   }
 }
 
-void make_reset (qk_tap_dance_state_t *state, void *user_data) {
-  switch (make_state.state) {
+void make_therick48_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (make_therick48_state.state) {
     case SINGLE_TAP: ; break;
     case DOUBLE_TAP: ; break;
   }
-  make_state.state = 0;
+  make_therick48_state.state = 0;
+}
+
+void make_nori_finished (qk_tap_dance_state_t *state, void *user_data) {
+  make_nori_state.state = cur_dance(state); // Use the dance that favors being held
+  switch (make_nori_state.state) {
+    case SINGLE_TAP: SEND_STRING("make nori:default:dfu"); break; // send nori default make code
+    case DOUBLE_TAP: SEND_STRING("make nori:macos:avrdude"); break; // send nori macos make code
+  }
+}
+
+void make_nori_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (make_nori_state.state) {
+    case SINGLE_TAP: ; break;
+    case DOUBLE_TAP: ; break;
+  }
+  make_nori_state.state = 0;
 }
 //*************** MAKE *******************//
 
