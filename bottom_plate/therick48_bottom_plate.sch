@@ -637,7 +637,7 @@ U 1 1 5EC2B488
 P 2000 5150
 F 0 "H7" H 2100 5196 50  0000 L CNN
 F 1 "MountingHole" H 2100 5105 50  0000 L CNN
-F 2 "random-keyboard-parts:Plate_hole_4mm" H 2000 5150 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 2000 5150 50  0001 C CNN
 F 3 "~" H 2000 5150 50  0001 C CNN
 	1    2000 5150
 	1    0    0    -1  
