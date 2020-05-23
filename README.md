@@ -5,9 +5,7 @@ A 4x12 ortho keyboard with USB C, SMD components, and 19mm spacing.
 
 This is essentially a dumbed down Planck clone.
 
-If you're looking for something with a numpad, look at the [therick64BA](https://github.com/therickthe/therick64BA) or [therick64BASP](https://github.com/therickthe/therick64BASP).
-
-**I AM CONSTANTLY TWEAKING THE DESIGN. I HAVE NOT ORDERED A PHYSICAL PCB YET.**
+If you're looking for something with a numpad, look at the [therick48+16](https://github.com/therickthe/therick48.16) or [therick48+16SP](https://github.com/therickthe/therick48.16SP).
 
 Although everything should<sup>(tm)</sup> work as is, it hasn't been physically tested, and I like playing with the traces to make it prettier/more efficient.
 
