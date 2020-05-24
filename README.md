@@ -1,13 +1,13 @@
-# therick
-![alt text](https://github.com/therickthe/therick48/blob/master/01%20therick48_bottom.png)
+# therick48
+![alt text](https://github.com/therickthe/therick48/blob/master/01%20therick48_PCB.png)
 
 A 4x12 ortho keyboard with USB C, SMD components, and 19mm spacing.
 
 This is essentially a dumbed down Planck clone.
 
-If you're looking for something with a numpad, look at the [therick48+16](https://github.com/therickthe/therick48.16) or [therick48+16SP](https://github.com/therickthe/therick48.16SP).
+If you're looking for something with a numpad, look at the [therick48.16](https://github.com/therickthe/therick48.16) or [therick48.16SP](https://github.com/therickthe/therick48.16SP).
 
-Although everything should<sup>(tm)</sup> work as is, it hasn't been physically tested, and I like playing with the traces to make it prettier/more efficient.
+Although everything should<sup>(tm)</sup> work as is, it hasn't been physically tested.
 
 **USE AT YOUR OWN RISK!!!** I am not responsible for any dumb things you do, fry your computer, break anything, etc.
 
