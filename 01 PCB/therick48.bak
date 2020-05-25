@@ -1720,7 +1720,7 @@ U 1 1 5DAFBA19
 P 9250 4800
 F 0 "H1" H 9350 4850 50  0000 L CNN
 F 1 "MountingHole" H 9350 4755 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 4800 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 4800 50  0001 C CNN
 F 3 "~" H 9250 4800 50  0001 C CNN
 	1    9250 4800
 	1    0    0    -1  
@@ -1731,7 +1731,7 @@ U 1 1 5DAFC41A
 P 9250 5200
 F 0 "H3" H 9350 5246 50  0000 L CNN
 F 1 "MountingHole" H 9350 5155 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 5200 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 5200 50  0001 C CNN
 F 3 "~" H 9250 5200 50  0001 C CNN
 	1    9250 5200
 	1    0    0    -1  
@@ -1742,7 +1742,7 @@ U 1 1 5DAFCFC0
 P 10100 4800
 F 0 "H4" H 10200 4846 50  0000 L CNN
 F 1 "MountingHole" H 10200 4755 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 10100 4800 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 10100 4800 50  0001 C CNN
 F 3 "~" H 10100 4800 50  0001 C CNN
 	1    10100 4800
 	1    0    0    -1  
@@ -1753,7 +1753,7 @@ U 1 1 5DAFD908
 P 10100 5000
 F 0 "H5" H 10200 5046 50  0000 L CNN
 F 1 "MountingHole" H 10200 4955 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 10100 5000 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 10100 5000 50  0001 C CNN
 F 3 "~" H 10100 5000 50  0001 C CNN
 	1    10100 5000
 	1    0    0    -1  
@@ -1764,7 +1764,7 @@ U 1 1 5DAFE1B7
 P 10100 5200
 F 0 "H6" H 10200 5246 50  0000 L CNN
 F 1 "MountingHole" H 10200 5155 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 10100 5200 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 10100 5200 50  0001 C CNN
 F 3 "~" H 10100 5200 50  0001 C CNN
 	1    10100 5200
 	1    0    0    -1  
@@ -2212,9 +2212,9 @@ Wire Notes Line
 	9750 4050 9750 4550
 Wire Notes Line
 	9750 4550 9100 4550
-Text GLabel 2050 5500 2    50   BiDi ~ 0
+Text GLabel 2050 5500 2    50   Output ~ 0
 D+BUS
-Text GLabel 2050 5200 2    50   BiDi ~ 0
+Text GLabel 2050 5200 2    50   Output ~ 0
 D-BUS
 Text GLabel 6700 4600 2    50   Input ~ 0
 row1
@@ -2339,13 +2339,13 @@ Connection ~ 2400 7100
 Wire Wire Line
 	2800 7100 2800 7050
 Connection ~ 2800 7100
-Text GLabel 4250 7450 2    50   BiDi ~ 0
+Text GLabel 4250 7450 2    50   Output ~ 0
 D+
-Text GLabel 3850 7450 0    50   BiDi ~ 0
+Text GLabel 3850 7450 0    50   Input ~ 0
 D+BUS
-Text GLabel 3850 6350 0    50   BiDi ~ 0
+Text GLabel 3850 6350 0    50   Input ~ 0
 D-BUS
-Text GLabel 4250 6350 2    50   BiDi ~ 0
+Text GLabel 4250 6350 2    50   Output ~ 0
 D-
 Wire Wire Line
 	4150 6400 4150 6350
@@ -2493,9 +2493,9 @@ F 3 "~" H 4400 4100 50  0001 C CNN
 	1    4400 4100
 	0    1    1    0   
 $EndComp
-Text GLabel 4250 4200 0    50   BiDi ~ 0
+Text GLabel 4250 4200 0    50   Input ~ 0
 D+
-Text GLabel 4250 4100 0    50   BiDi ~ 0
+Text GLabel 4250 4100 0    50   Input ~ 0
 D-
 Text GLabel 6700 4500 2    50   Input ~ 0
 col3
@@ -2512,7 +2512,7 @@ U 1 1 5DDD64AC
 P 9250 5000
 F 0 "H2" H 9350 5050 50  0000 L CNN
 F 1 "MountingHole" H 9350 4955 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 5000 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 5000 50  0001 C CNN
 F 3 "~" H 9250 5000 50  0001 C CNN
 	1    9250 5000
 	1    0    0    -1  
@@ -2528,11 +2528,11 @@ F 3 "~" H 4100 4400 50  0001 C CNN
 	1    4100 4400
 	0    1    1    0   
 $EndComp
-Text GLabel 5800 7200 3    50   Input ~ 0
+Text GLabel 5800 7200 3    50   Output ~ 0
 col10
-Text GLabel 5700 7200 3    50   Input ~ 0
+Text GLabel 5700 7200 3    50   Output ~ 0
 col11
-Text GLabel 5600 7200 3    50   Input ~ 0
+Text GLabel 5600 7200 3    50   Output ~ 0
 col9
 $Comp
 L power:GND #PWR0121
@@ -2555,7 +2555,7 @@ Wire Notes Line
 	4850 6250 4850 7700
 Text GLabel 4050 5250 0    50   Input ~ 0
 ISP_Reset
-Text GLabel 5900 7200 3    50   Input ~ 0
+Text GLabel 5900 7200 3    50   Output ~ 0
 ISP_Reset
 Text Notes 5050 7650 0    50   ~ 0
 ISP Flashing
@@ -2578,7 +2578,6 @@ Wire Wire Line
 Connection ~ 1300 6600
 Wire Wire Line
 	1350 6600 1400 6600
-Connection ~ 1400 6600
 $Comp
 L acheronSymbols:TYPE-C-31-M12_13 J1
 U 1 1 5E315A49
@@ -2590,12 +2589,6 @@ F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 1600 52
 	1    1400 5150
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2600 6600 2600 4400
-Wire Wire Line
-	1400 6600 2600 6600
-Wire Wire Line
-	2600 4400 4000 4400
 Wire Notes Line
 	9100 4650 10850 4650
 NoConn ~ 6700 5200
@@ -2619,7 +2612,7 @@ U 1 1 5EB711B5
 P 9250 5800
 F 0 "H7" H 9350 5850 50  0000 L CNN
 F 1 "MountingHole" H 9350 5755 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 5800 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 5800 50  0001 C CNN
 F 3 "~" H 9250 5800 50  0001 C CNN
 	1    9250 5800
 	1    0    0    -1  
@@ -2630,7 +2623,7 @@ U 1 1 5EB711BB
 P 9250 6200
 F 0 "H9" H 9350 6246 50  0000 L CNN
 F 1 "MountingHole" H 9350 6155 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 6200 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 6200 50  0001 C CNN
 F 3 "~" H 9250 6200 50  0001 C CNN
 	1    9250 6200
 	1    0    0    -1  
@@ -2641,7 +2634,7 @@ U 1 1 5EB711C1
 P 9250 6400
 F 0 "H10" H 9350 6446 50  0000 L CNN
 F 1 "MountingHole" H 9350 6355 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 6400 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 6400 50  0001 C CNN
 F 3 "~" H 9250 6400 50  0001 C CNN
 	1    9250 6400
 	1    0    0    -1  
@@ -2652,7 +2645,7 @@ U 1 1 5EB711C7
 P 9250 6000
 F 0 "H8" H 9350 6050 50  0000 L CNN
 F 1 "MountingHole" H 9350 5955 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 9250 6000 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 9250 6000 50  0001 C CNN
 F 3 "~" H 9250 6000 50  0001 C CNN
 	1    9250 6000
 	1    0    0    -1  
@@ -2663,7 +2656,7 @@ U 1 1 5EB954D0
 P 10100 5800
 F 0 "H11" H 10200 5850 50  0000 L CNN
 F 1 "MountingHole" H 10200 5755 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 10100 5800 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 10100 5800 50  0001 C CNN
 F 3 "~" H 10100 5800 50  0001 C CNN
 	1    10100 5800
 	1    0    0    -1  
@@ -2674,7 +2667,7 @@ U 1 1 5EB954D6
 P 10100 6200
 F 0 "H13" H 10200 6246 50  0000 L CNN
 F 1 "MountingHole" H 10200 6155 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 10100 6200 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 10100 6200 50  0001 C CNN
 F 3 "~" H 10100 6200 50  0001 C CNN
 	1    10100 6200
 	1    0    0    -1  
@@ -2685,7 +2678,7 @@ U 1 1 5EB954DC
 P 10100 6400
 F 0 "H14" H 10200 6446 50  0000 L CNN
 F 1 "MountingHole" H 10200 6355 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 10100 6400 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 10100 6400 50  0001 C CNN
 F 3 "~" H 10100 6400 50  0001 C CNN
 	1    10100 6400
 	1    0    0    -1  
@@ -2696,7 +2689,7 @@ U 1 1 5EB954E2
 P 10100 6000
 F 0 "H12" H 10200 6050 50  0000 L CNN
 F 1 "MountingHole" H 10200 5955 50  0000 L CNN
-F 2 "random-keyboard-parts:plate_hole_4mm_tht" H 10100 6000 50  0001 C CNN
+F 2 "random-keyboard-parts:Generic-Mounthole" H 10100 6000 50  0001 C CNN
 F 3 "~" H 10100 6000 50  0001 C CNN
 	1    10100 6000
 	1    0    0    -1  
@@ -2728,4 +2721,25 @@ F 3 " ~" H 4425 6250 50  0001 C CNN
 	1    5700 6800
 	0    1    1    0   
 $EndComp
+$Comp
+L lets_split-cache:HOLE U4
+U 1 1 5EC53EDB
+P 10000 4250
+F 0 "U4" H 10178 4303 60  0000 L CNN
+F 1 "HOLE" H 10178 4197 60  0000 L CNN
+F 2 "Artwork:THERICK" H 10000 4250 60  0001 C CNN
+F 3 "" H 10000 4250 60  0001 C CNN
+	1    10000 4250
+	1    0    0    -1  
+$EndComp
+Text Notes 9850 4500 0    50   ~ 0
+THERICK
+Wire Notes Line
+	9800 4050 9800 4550
+Wire Notes Line
+	9800 4550 10450 4550
+Wire Notes Line
+	10450 4550 10450 4050
+Wire Notes Line
+	10450 4050 9800 4050
 $EndSCHEMATC
