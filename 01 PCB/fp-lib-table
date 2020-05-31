@@ -5,4 +5,6 @@
   (lib (name Artwork)(type KiCad)(uri /Users/Rick/Documents/GitHub/Libraries/Artwork)(options "")(descr ""))
   (lib (name Keeb_footprints)(type KiCad)(uri /Users/Rick/Documents/GitHub/Footprints/Keeb_footprints.pretty)(options "")(descr ""))
   (lib (name acheron_Components)(type KiCad)(uri /Users/Rick/Documents/GitHub/Libraries/AcheronLibrary-master/footprints/acheron_Components.pretty)(options "")(descr ""))
+  (lib (name acheron_Graphics)(type KiCad)(uri /Users/Rick/Documents/GitHub/Libraries/AcheronLibrary-master/footprints/acheron_Graphics.pretty)(options "")(descr ""))
+  (lib (name acheron_MX)(type KiCad)(uri /Users/Rick/Documents/GitHub/Libraries/AcheronLibrary-master/footprints/acheron_MX.pretty)(options "")(descr ""))
 )

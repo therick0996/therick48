@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 20)
+    (drawings 21)
     (tracks 0)
     (zones 0)
     (modules 65)
@@ -4005,7 +4005,10 @@
     (pad 1 thru_hole circle (at 0 0) (size 3.5 3.5) (drill 2.2) (layers *.Cu *.Mask))
   )
 
-  (gr_text "therick48 Rev 1.1" (at 48.639872 72.959808 90) (layer F.SilkS) (tstamp 5E3DAFC7)
+  (gr_text github.com/dierickdie (at 122.359678 37.619901) (layer F.SilkS)
+    (effects (font (size 1.5 1.5) (thickness 0.2)))
+  )
+  (gr_text "therick48 Rev 1.1" (at 160.359578 37.619901) (layer F.SilkS) (tstamp 5E3DAFC7)
     (effects (font (size 1.5 1.5) (thickness 0.2)))
   )
   (gr_line (start 274.36 38.76) (end 274.36 107.16) (layer Edge.Cuts) (width 0.15) (tstamp 5E3DAF9A))
@@ -4020,8 +4023,8 @@
   (gr_arc (start 270.56 107.16) (end 270.56 110.96) (angle -90) (layer Edge.Cuts) (width 0.15) (tstamp 5E2D167D))
   (gr_arc (start 50.16 107.16) (end 46.36 107.16) (angle -90) (layer Edge.Cuts) (width 0.15) (tstamp 5E2D167D))
   (gr_arc (start 50.16 38.76) (end 50.16 34.96) (angle -90) (layer Edge.Cuts) (width 0.15))
-  (gr_text JLCJLCJLCJLC (at 48.64 106.4 90) (layer F.SilkS)
-    (effects (font (size 1 1) (thickness 0.15)) (justify left))
+  (gr_text JLCJLCJLCJLC (at 49.39987 82.459783 90) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
   )
   (gr_line (start 217.4875 89.69375) (end 217.4875 94.45625) (layer Dwgs.User) (width 0.15))
   (gr_line (start 217.4875 51.59375) (end 217.4875 56.35625) (layer Dwgs.User) (width 0.15))
