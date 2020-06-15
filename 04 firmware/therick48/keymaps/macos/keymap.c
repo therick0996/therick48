@@ -12,10 +12,10 @@
 
 // Macro keycodes
   enum custom_keycodes {
-  INSR = SAFE_RANGE,
-  DELR,
-  INSC,
-  DELC
+  INS_ROW = SAFE_RANGE,
+  DEL_ROW,
+  INS_COL,
+  DEL_COL
 };
 
 typedef struct {
@@ -223,10 +223,16 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define GA_LEFT     LGUI(LALT(KC_LEFT))  // Go to next tab
 #define GA_RIGHT    LGUI(LALT(KC_RIGHT))  // Go to previous tab
-#define ALT_SUP     LALT(KC_UP)  // Go to next sheet in Sheets
-#define ALT_SDN     LALT(KC_DOWN)  // Go to previous sheet in Sheets
 #define GUI_GRV     LGUI(KC_GRAVE)  // Switch between windows in same app
 #define G_HOME      LGUI(KC_HOME)  // GUI + Home
+
+// Google Sheets
+#define ALTUP      LALT(KC_UP)  // Next sheet
+#define ALTDN      LALT(KC_DOWN)  // Previous sheet
+#define HD_ROW      LGUI(LALT(KC_9)) // Hide row
+#define UNHD_ROW    LGUI(LSFT(KC_9)) // Unhide row
+#define HD_COL      LGUI(LALT(KC_0)) //Hide column
+#define UNHD_COL    LGUI(LSFT(KC_0)) // Unhide column
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -312,7 +318,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |     !     |     @     |     #     |     $     |     %     |     ^     |     &     |     *     |     (     |     )     |     _     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   Caps    |     `     |           |           |           |           |           |           |     [     |     ]     |     \     |   Fn2     |
+  |   Caps    |     `     |           |           |           |           |           |           |     [     |     ]     |    \ |    |   Fn2     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |  TG(Lwr)  |   Raise   |   Play    |   Vol-    |   Vol+    |   Mute    |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -369,16 +375,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   GUI `   |  Del Col  |  Ins Col  |  Del Row  |  Ins Row  |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   CAPS    |           |           |           |           |           |           |           |           |           |           |           |
+  |   CAPS    | Hide Col  |Unhide Col | Hide Row  |Unhide Row |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 
   [_FN3] = LAYOUT_ortho_4x12(
-    KC_GRAVE,   GA_LEFT,    GA_RIGHT,   ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    GUI_GRV,    DELC,       INSC,       DELR,       INSR,       _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    KC_CAPS,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    KC_GRAVE,   GA_LEFT,    GA_RIGHT,   ALTUP,     ALTDN,     _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    GUI_GRV,    DEL_COL,    INS_COL,    DEL_ROW,    INS_ROW,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    KC_CAPS,    HD_COL,     UNHD_COL,   HD_ROW,     UNHD_ROW,   _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   ) 
 
@@ -392,28 +398,28 @@ const uint16_t PROGMEM fn_actions[] = {
 // Macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case INSR: // Insert row in Sheets
+    case INS_ROW: // Insert row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "r"); // Ctrl+Alt+i, r
       } else { // when keycode is released
       }
       break;
 
-    case DELR: // Delete row in Sheets
+    case DEL_ROW: // Delete row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "d"); // Ctrl+Alt+e, d
       } else { // when keycode is released
       }
       break;
 
-    case INSC: // Insert column in Sheets
+    case INS_COL: // Insert column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "c"); // Ctrl+Alt+i, c
       } else { // when keycode is released
       }
       break;    
 
-    case DELC: // Delete column in Sheets
+    case DEL_COL: // Delete column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "e"); // Ctrl+Alt+e, e
       } else { // when keycode is released
