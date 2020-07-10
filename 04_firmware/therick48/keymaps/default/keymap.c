@@ -34,13 +34,14 @@ enum {
   LCRLY = 0,
   RCRLY,
   PIPE,
-  TILDE,
+  // TILDE,
   // Complex
   MAKE1,
   MAKE2,
   EMAIL,
   LBKTS,
-  RBKTS
+  RBKTS,
+  TILDE
 };
 
 // Tap dance dance states
@@ -116,17 +117,19 @@ void lbkts_reset (qk_tap_dance_state_t *state, void *user_data);
 void rbkts_finished (qk_tap_dance_state_t *state, void *user_data);
 void rbkts_reset (qk_tap_dance_state_t *state, void *user_data);
 
-
+void tilde_finished (qk_tap_dance_state_t *state, void *user_data);
+void tilde_reset (qk_tap_dance_state_t *state, void *user_data);
 
 // Tap dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
   [PIPE]    = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_PIPE),
-  [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
+  // [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
   [MAKE1]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_therick48_finished, make_therick48_reset),
   [MAKE2]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_nori_finished, make_nori_reset),
   [LBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lbkts_finished, lbkts_reset),
   [RBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rbkts_finished, rbkts_reset),
+  [TILDE]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, tilde_finished, tilde_reset),
 };
 
 // Readability keycodes
@@ -356,6 +359,11 @@ static xtap rbkts_state = {
   .state = 0
 };
 
+static xtap tilde_state = {
+  .is_press_action = true,
+  .state = 0
+};
+
 //*************** MAKE *******************//
 void make_therick48_finished (qk_tap_dance_state_t *state, void *user_data) {
   make_therick48_state.state = cur_dance(state); // Use the dance that favors being held
@@ -450,7 +458,25 @@ void rbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
 }
 //************* BRACKETS ******************//
 
+//*************** TILDE *******************//
+void tilde_finished (qk_tap_dance_state_t *state, void *user_data) {
+  tilde_state.state = cur_dance(state); // Use the dance that favors being held
+  switch (tilde_state.state) {
+    case SINGLE_TAP: register_code(KC_GRAVE); break; // send `
+    case DOUBLE_TAP: register_code(KC_LSFT); register_code(KC_GRAVE); break; // send ~
+    case TRIPLE_TAP: SEND_STRING("```"); // ```
+  }
+}
 
+void tilde_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (tilde_state.state) {
+    case SINGLE_TAP: unregister_code(KC_GRAVE); break; // unregister `
+    case DOUBLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_GRAVE); break; // unregister ~
+    case TRIPLE_TAP: ; break;
+  }
+  tilde_state.state = 0;
+}
+//*************** TILDE *******************//
 
 /* FN2
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
