@@ -1,5 +1,5 @@
 # therick48
-![alt text](https://github.com/dierickdie/therick48/blob/master/01%20therick48_PCB.png)
+![alt text](https://github.com/dierickdie/therick48/blob/master/01_therick48_PCB.png)
 
 A 4x12 ortho keyboard with USB C, SMD components, and 19mm spacing.
 
