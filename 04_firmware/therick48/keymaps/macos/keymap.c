@@ -559,7 +559,7 @@ void tilde_finished (qk_tap_dance_state_t *state, void *user_data) {
   switch (tilde_state.state) {
     case SINGLE_TAP: register_code(KC_GRAVE); break; // send `
     case DOUBLE_TAP: register_code(KC_LSFT); register_code(KC_GRAVE); break; // send ~
-    case TRIPLE_TAP: SEND_STRING("```"); // ```
+    case TRIPLE_TAP: SEND_STRING("```"); // send ```
   }
 }
 
