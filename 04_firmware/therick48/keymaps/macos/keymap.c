@@ -529,7 +529,7 @@ void sum_finished (qk_tap_dance_state_t *state, void *user_data) {
   switch (sum_state.state) {
     case SINGLE_TAP: register_code(KC_EQL); break; // send =
     case DOUBLE_TAP: SEND_STRING("=SUM("); break; // =SUM(
-    case TRIPLE_TAP: SEND_STRING("=VLOOKUP("); // send =VLOOKUP(
+    case TRIPLE_TAP: SEND_STRING("=IFERROR(VLOOKUP("); // send =VLOOKUP(
   }
 }
 
