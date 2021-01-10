@@ -39,6 +39,7 @@ enum {
   MAKE1,
   MAKE2,
   EMAIL,
+  SUM,
   LBKTS,
   RBKTS,
   TILDE
@@ -111,6 +112,9 @@ void make_nori_reset (qk_tap_dance_state_t *state, void *user_data);
 void email_finished (qk_tap_dance_state_t *state, void *user_data);
 void email_reset (qk_tap_dance_state_t *state, void *user_data);
 
+void sum_finished (qk_tap_dance_state_t *state, void *user_data);
+void sum_reset (qk_tap_dance_state_t *state, void *user_data);
+
 void lbkts_finished (qk_tap_dance_state_t *state, void *user_data);
 void lbkts_reset (qk_tap_dance_state_t *state, void *user_data);
 
@@ -127,6 +131,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
   [MAKE1]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_therick48_finished, make_therick48_reset),
   [MAKE2]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_nori_finished, make_nori_reset),
+  [SUM]     = ACTION_TAP_DANCE_FN_ADVANCED(NULL, sum_finished, sum_reset),
   [LBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lbkts_finished, lbkts_reset),
   [RBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rbkts_finished, rbkts_reset),
   [TILDE]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, tilde_finished, tilde_reset),
@@ -201,7 +206,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     KC_A,       KC_S,       KC_D,       CTL_F,      KC_G,       KC_H,       CTL_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    CTL_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    SFT_ENT,
-    KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR_BS,     KC_LGUI,    KC_SPC,     RSE_SPC,    CTL_LEFT,   SFT_DOWN,   SFT_UP,     CTL_RGHT
+    KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR_BS,     KC_LGUI,    KC_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
   ),
 
 /* Lower
@@ -217,7 +222,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
   [_LOWER] = LAYOUT_ortho_4x12(
-    _______,    TD(LBKTS),  TD(RBKTS),  KC_MINS,    KC_EQL,     KC_NO,      KC_NO,      KC_BSPC,     KC_P7,     KC_P8,      KC_P9,      KC_PMNS,
+    _______,    TD(LBKTS),  TD(RBKTS),  KC_MINS,    TD(SUM),    KC_NO,      KC_NO,      KC_BSPC,     KC_P7,     KC_P8,      KC_P9,      KC_PMNS,
     LWL0_TAB,   CTL_HOME,   KC_PGDN,    KC_PGUP,    LWL1_END,   KC_BSPC,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
     _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_NO,      _______,    KC_CALC,     KC_P1,     KC_P2,      KC_P3,      KC_PENT,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    LWL0_SPC,    KC_P0,     KC_PAST,    KC_PDOT,    KC_PSLS
@@ -346,6 +351,11 @@ static xtap email_state = {
   .state = 0
 };
 
+static xtap sum_state = {
+  .is_press_action = true,
+  .state = 0
+};
+
 static xtap lbkts_state = {
   .is_press_action = true,
   .state = 0
@@ -414,6 +424,26 @@ void email_reset (qk_tap_dance_state_t *state, void *user_data) {
   email_state.state = 0;
 }
 //*************** EMAIL *******************//
+
+//**************** SUM ********************//
+void sum_finished (qk_tap_dance_state_t *state, void *user_data) {
+  sum_state.state = cur_dance(state); // Use the dance that favors being held
+  switch (sum_state.state) {
+    case SINGLE_TAP: register_code(KC_EQL); break; // send =
+    case DOUBLE_TAP: SEND_STRING("=SUM("); break; // =SUM(
+    case TRIPLE_TAP: SEND_STRING("=IFERROR(VLOOKUP("); // send =VLOOKUP(
+  }
+}
+
+void sum_reset (qk_tap_dance_state_t *state, void *user_data) {
+  switch (sum_state.state) {
+    case SINGLE_TAP: unregister_code(KC_EQL); break; // unregister =
+    case DOUBLE_TAP: ; break;
+    case TRIPLE_TAP: ; break;
+  }
+  sum_state.state = 0;
+}
+//**************** SUM ********************//
 
 //************* BRACKETS ******************//
 // Left brackets 
