@@ -376,7 +376,7 @@ void make_therick48_finished (qk_tap_dance_state_t *state, void *user_data) {
   make_therick48_state.state = cur_dance(state); // Use the dance that favors being held
   switch (make_therick48_state.state) {
     case SINGLE_TAP: SEND_STRING("make therick48:default:dfu"); break; // send therick48 default make code
-    case DOUBLE_TAP: SEND_STRING("make therick48:macos:avrdude"); break; // send therick48 macos make code
+    case DOUBLE_TAP: SEND_STRING("make therick48:macos:dfu"); break; // send therick48 macos make code
   }
 }
 
@@ -391,7 +391,7 @@ void make_therick48_reset (qk_tap_dance_state_t *state, void *user_data) {
 void make_nori_finished (qk_tap_dance_state_t *state, void *user_data) {
   make_nori_state.state = cur_dance(state); // Use the dance that favors being held
   switch (make_nori_state.state) {
-    case SINGLE_TAP: SEND_STRING("make nori:default:dfu"); break; // send nori default make code
+    case SINGLE_TAP: SEND_STRING("make nori:default:avrdude"); break; // send nori default make code
     case DOUBLE_TAP: SEND_STRING("make nori:macos:avrdude"); break; // send nori macos make code
   }
 }
