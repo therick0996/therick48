@@ -7,11 +7,15 @@
 #define _FN			    3
 #define _LWL0 		  4
 #define _LWL1		    5
+#define _FN2        6
 
 // Macro keycodes
-/* enum custom_keycodes {
-  MAKE = SAFE_RANGE,
-}; */
+  enum custom_keycodes {
+  INSROW = SAFE_RANGE,
+  DELROW,
+  INSCOL,
+  DELCOL
+};
 
 typedef struct {
   bool is_press_action;
@@ -129,8 +133,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [PIPE]    = ACTION_TAP_DANCE_DOUBLE(KC_BSLS, KC_PIPE),
   // [TILDE]   = ACTION_TAP_DANCE_DOUBLE(KC_GRAVE, KC_TILDE),
   [EMAIL]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, email_finished, email_reset),
-  [MAKE1]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_therick48_finished, make_therick48_reset),
-  [MAKE2]    = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_nori_finished, make_nori_reset),
+  [MAKE1]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_therick48_finished, make_therick48_reset),
+  [MAKE2]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, make_nori_finished, make_nori_reset),
   [SUM]     = ACTION_TAP_DANCE_FN_ADVANCED(NULL, sum_finished, sum_reset),
   [LBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lbkts_finished, lbkts_reset),
   [RBKTS]   = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rbkts_finished, rbkts_reset),
@@ -144,6 +148,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define LOWER 		  MO(_LOWER)
 #define RAISE 		  MO(_RAISE)
 #define FN 		  	  MO(_FN)
+#define FN2         MO(_FN2)
 
 #define LWR_BS 		  LT(_LOWER, KC_BSPC)
 #define RSE_SPC 	  LT(_RAISE, KC_SPC)
@@ -157,6 +162,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define LWL1_PENT	  LT(_LWL1, KC_PENT)
 #define LWL1_END    LT(_LWL1, KC_END)
 #define LWL1_BS		  LT(_LWL1, KC_BSPC)
+#define FN2_BS      LT(_FN2, KC_BSPC)
 
 // Dual key codes
 #define CTL_A 		  CTL_T(KC_A)
@@ -188,6 +194,19 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define CTLHOME     LCTL(KC_HOME)
 #define PRT_SC      LGUI(LSFT(KC_S))
 
+//Chrome Tabs
+#define CLT_PGDN    LCTL(KC_PGDN)
+#define CLT_PGUP    LCTL(KC_PGUP)
+
+// Google Sheets shortcuts
+#define ALT_SUP     LALT(KC_UP)  // Go to next sheet in Sheets
+#define ALT_SDN     LALT(KC_DOWN)  // Go to previous sheet in Sheets
+
+#define HIDEROW     LCTL(LALT(KC_9))  // Hide row
+#define UNHIDEROW   LCTL(LSFT(KC_9))  // Unhide row
+#define HIDECOL     LCTL(LALT(KC_0))  // Hide column
+#define UNIHDECOL   LCTL(LSFT(KC_0))  // Unhide column
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QW QWERTY
@@ -198,7 +217,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   Shift   |     Z     |     X     |     C     |     V     |     B     |     N     |     M     |     ,     |     .     |     /     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |    Ctrl   |   Shift   |    GUI    |    Alt    |  Lwr BS   |    BS     |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
+  |    Ctrl   |   Shift   |    GUI    |    Alt    |  Lwr BS   |   FN2 BS  |   Space   |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */
 
@@ -206,7 +225,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     KC_A,       KC_S,       KC_D,       CTL_F,      KC_G,       KC_H,       CTL_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    CTL_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    SFT_ENT,
-    KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR_BS,     KC_LGUI,    KC_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
+    KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR_BS,     FN2_BS,     KC_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
   ),
 
 /* Lower
@@ -302,6 +321,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_DEL,     _______,    _______,    ALT_LEFT,   KC_DOWN,    KC_UP,      ALT_RGHT,   KC_ENT,
     _______,    _______,    _______,    TD(MAKE1),  TD(MAKE2),  _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,    _______,
     _______,    _______,    _______,    _______,    KC_ENT,     _______,    _______,    _______,    _______,    _______,    KC_F11,     KC_F12 
+  ),
+
+/* FN2
+  .-----------------------------------------------------------------------------------------------------------------------------------------------.
+  |           | Ctrl PgDn | Ctrl PgUp |   AS Up   |   AS Dn   |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |  Del Col  |  Ins Col  |  Del Row  |  Ins Row  |           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |  Hide Col | Unhide Col|  Hide Row | Unhide Row|           |           |           |           |           |           |           |
+  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
+  |           |           |           |           |           |           |           |           |           |           |           |           |
+  '-----------------------------------------------------------------------------------------------------------------------------------------------'
+*/ 
+
+  [_FN2] = LAYOUT_ortho_4x12(
+    _______,    CLT_PGDN,   CLT_PGUP,   _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    DELCOL,     INSCOL,     DELROW,     INSROW,     _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    HIDECOL,    UNIHDECOL,  HIDEROW,    UNHIDEROW,  _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   )
 
 };
@@ -334,6 +372,40 @@ const uint16_t PROGMEM fn_actions[] = {
   }
   return true;
 }; */
+
+// Macros
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case INSROW: // Insert row in Sheets
+      if (record->event.pressed) { // when keycode is pressed
+        SEND_STRING(SS_LALT(SS_LSFT("i") SS_DELAY(250)) "r"); // Alt+Shift+i, r
+      } else { // when keycode is released
+      }
+      break;
+
+    case DELROW: // Delete row in Sheets
+      if (record->event.pressed) { // when keycode is pressed
+        SEND_STRING(SS_LALT(SS_LSFT("e") SS_DELAY(250)) "d"); // Alt+Shift+e, d
+      } else { // when keycode is released
+      }
+      break;
+
+    case INSCOL: // Insert column in Sheets
+      if (record->event.pressed) { // when keycode is pressed
+        SEND_STRING(SS_LALT(SS_LSFT("i") SS_DELAY(250)) "c"); // Alt+Shift+i, c
+      } else { // when keycode is released
+      }
+      break;    
+
+    case DELCOL: // Delete column in Sheets
+      if (record->event.pressed) { // when keycode is pressed
+        SEND_STRING(SS_LALT(SS_LSFT("e") SS_DELAY(250)) "e"); // Alt+Shift+e, e
+      } else { // when keycode is released
+      }
+      break;
+  }
+  return true;
+};
 
 // Tap dance stuff
 static xtap make_therick48_state = {
@@ -430,8 +502,8 @@ void sum_finished (qk_tap_dance_state_t *state, void *user_data) {
   sum_state.state = cur_dance(state); // Use the dance that favors being held
   switch (sum_state.state) {
     case SINGLE_TAP: register_code(KC_EQL); break; // send =
-    case DOUBLE_TAP: SEND_STRING("=SUM("); break; // =SUM(
-    case TRIPLE_TAP: SEND_STRING("=IFERROR(VLOOKUP("); // send =VLOOKUP(
+    case DOUBLE_TAP: SEND_STRING("=sum("); break; // =sum(
+    case TRIPLE_TAP: SEND_STRING("=iferror(vlookup("); // send =iferror(vlookup(
   }
 }
 

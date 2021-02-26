@@ -8,14 +8,13 @@
 #define _LWL0       4
 #define _LWL1       5
 #define _FN2        6
-#define _FN3        7
 
 // Macro keycodes
   enum custom_keycodes {
-  INSR = SAFE_RANGE,
-  DELR,
-  INSC,
-  DELC
+  INSROW = SAFE_RANGE,
+  DELROW,
+  INSCOL,
+  DELCOL
 };
 
 typedef struct {
@@ -150,7 +149,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define RAISE 		  MO(_RAISE)
 #define FN 		  	  MO(_FN)
 #define FN2         MO(_FN2)
-#define FN3         MO(_FN3)
 
 #define LWR_BS 		  LT(_LOWER, KC_BSPC)
 #define RSE_SPC 	  LT(_RAISE, KC_SPC)
@@ -163,7 +161,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define LWL1_PENT	  LT(_LWL1, KC_PENT)
 #define LWL1_BS		  LT(_LWL1, KC_BSPC)
 #define LWL1_END    LT(_LWL1, KC_END)
-#define FN3_BS      LT(_FN3, KC_BSPC)
+#define FN2_BS      LT(_FN2, KC_BSPC)
 #define FN_SPC      LT(_FN, KC_SPC)
 
 // Dual key codes
@@ -231,13 +229,20 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 #define SA_BS 		  MT(MOD_LSFT | MOD_LALT, KC_BSPC)
 
+//Chrom tabs
 #define GA_LEFT     LGUI(LALT(KC_LEFT))  // Go to next tab
 #define GA_RIGHT    LGUI(LALT(KC_RIGHT))  // Go to previous tab
+
+
+// Google Sheets shortcuts
 #define ALT_SUP     LALT(KC_UP)  // Go to next sheet in Sheets
 #define ALT_SDN     LALT(KC_DOWN)  // Go to previous sheet in Sheets
-#define GUI_GRV     LGUI(KC_GRAVE)  // Switch between windows in same app
 #define G_HOME      LGUI(KC_HOME)  // GUI + Home
-#define MUTE_OBS    LGUI(LSFT(LCTL(KC_V)))  // Mute OBS
+
+#define HIDEROW     LGUI(LALT(KC_9))  // Hide row
+#define UNHIDEROW   LGUI(LSFT(KC_9))  // Unhide row
+#define HIDECOL     LGUI(LALT(KC_0))  // Hide column
+#define UNIHDECOL   LGUI(LSFT(KC_0))  // Unhide column
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -249,7 +254,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |   Shift   |     Z     |     X     |     C     |     V     |     B     |     N     |     M     |     ,     |     .     |     /     |   Enter   |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |    GUI    |   Shift   |   Ctrl    |   Option  |  Lwr BS   |  FN3 BS   | FN Space  |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
+  |    GUI    |   Shift   |   Ctrl    |   Option  |  Lwr BS   |  FN2 BS   | FN Space  |  Rse Spc  |   Left    |   Down    |     Up    |   Right   |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 
@@ -257,7 +262,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
     FN_TAB,     ALT_A,      KC_S,       KC_D,       GUI_F,      KC_G,       KC_H,       GUI_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
     KC_LSFT,    GUI_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    SFT_ENT,
-    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN3_BS,     FN_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
+    KC_LGUI,    KC_LSFT,    KC_LCTRL,   KC_LALT,    LWR_BS,     FN2_BS,     FN_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
   ),
 
 /* Lower
@@ -323,7 +328,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |     !     |     @     |     #     |     $     |     %     |     ^     |     &     |     *     |     (     |     )     |     _     |     +     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   Caps    |           |           |           |           |           |           |           |     [     |     ]     |    \ |    |   Fn2     |
+  |   Caps    |           |           |           |           |           |           |           |     [     |     ]     |    \ |    |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |  TG(Lwr)  |   Raise   |   Play    |   Vol-    |   Vol+    |   Mute    |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -332,7 +337,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = LAYOUT_ortho_4x12(
     TD(TILDE),  KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       _______,
     KC_EXLM,    TD(EMAIL),  KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,
-    CAPS_L,     _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_RBRC,    TD(PIPE),   FN2,
+    CAPS_L,     _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_LBRC,    KC_RBRC,    TD(PIPE),   _______,
     _______,    _______,    _______,    _______,    _______,    _______,    TG(1),      _______,    GUI_MPLY,   ALT_VOLD,   CTL_VOLU,   KC_MUTE
   ),
 
@@ -357,39 +362,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* FN2
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
-  | Bright Up | Bright Dn | Miss Ctrl |           |           |           |           |           |           |           |           |           |
+  |     ~     |  GA Left  |  GA Right |   AS Up   |   AS Dn   |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           | Prnt Scrn | Prt Sel C | Prnt Sel  |           |           |           |           |           |           |           |           |
+  |   GUI `   |  Del Col  |  Ins Col  |  Del Row  |  Ins Row  |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |           |           |           |           |           |           |           |           |           |    FN2    |
+  |   CAPS    |  Hide Col | Unhide Col|  Hide Row | Unhide Row|           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |           |           |           |           |           |           |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 
   [_FN2] = LAYOUT_ortho_4x12(
-    KC_BRID,    KC_BRIU,    MSNCTRL,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    WHLSCR,     PRNTSCRC,   PRNTSCR,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
-  ),
-
-/* FN3
-  .-----------------------------------------------------------------------------------------------------------------------------------------------.
-  |     ~     |  CS Tab   |   C Tab   |   AS Up   |   AS Dn   |           |           |           |           |           |           |           |
-  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   GUI `   |  Del Col  |  Ins Col  |  Del Row  |  Ins Row  |           |           |           |           |           |           |           |
-  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   CAPS    |           |           |           |   MUTE    |           |           |           |           |           |           |           |
-  |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |           |           |           |           |           |           |           |           |           |           |           |           |
-  '-----------------------------------------------------------------------------------------------------------------------------------------------'
-*/ 
-
-  [_FN3] = LAYOUT_ortho_4x12(
     KC_GRAVE,   GA_LEFT,    GA_RIGHT,   ALT_SUP,    ALT_SDN,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    GUI_GRV,    DELC,       INSC,       DELR,       INSR,       _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    KC_CAPS,    _______,    _______,    _______,    MUTE_OBS,   _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    DELCOL,     INSCOL,     DELROW,     INSROW,     _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    KC_CAPS,    HIDECOL,    UNIHDECOL,  HIDEROW,    UNHIDEROW,  _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   ) 
 
@@ -403,28 +389,28 @@ const uint16_t PROGMEM fn_actions[] = {
 // Macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case INSR: // Insert row in Sheets
+    case INSROW: // Insert row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "r"); // Ctrl+Alt+i, r
       } else { // when keycode is released
       }
       break;
 
-    case DELR: // Delete row in Sheets
+    case DELROW: // Delete row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "d"); // Ctrl+Alt+e, d
       } else { // when keycode is released
       }
       break;
 
-    case INSC: // Insert column in Sheets
+    case INSCOL: // Insert column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("i") SS_DELAY(250)) "c"); // Ctrl+Alt+i, c
       } else { // when keycode is released
       }
       break;    
 
-    case DELC: // Delete column in Sheets
+    case DELCOL: // Delete column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LCTL(SS_LALT("e") SS_DELAY(250)) "e"); // Ctrl+Alt+e, e
       } else { // when keycode is released
@@ -529,8 +515,8 @@ void sum_finished (qk_tap_dance_state_t *state, void *user_data) {
   sum_state.state = cur_dance(state); // Use the dance that favors being held
   switch (sum_state.state) {
     case SINGLE_TAP: register_code(KC_EQL); break; // send =
-    case DOUBLE_TAP: SEND_STRING("=SUM("); break; // =SUM(
-    case TRIPLE_TAP: SEND_STRING("=IFERROR(VLOOKUP("); // send =VLOOKUP(
+    case DOUBLE_TAP: SEND_STRING("=sum("); break; // =sum(
+    case TRIPLE_TAP: SEND_STRING("=iferror(vlookup("); // send =iferror(vlookup(
   }
 }
 
@@ -605,7 +591,7 @@ void tilde_reset (qk_tap_dance_state_t *state, void *user_data) {
 //*************** TILDE *******************//
 
 
-/* FN2
+/* FN3
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   |           |           |           |           |           |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -617,7 +603,7 @@ void tilde_reset (qk_tap_dance_state_t *state, void *user_data) {
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 /*
-  [_FN2] = LAYOUT_ortho_4x12(
+  [_FN3] = LAYOUT_ortho_4x12(
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
