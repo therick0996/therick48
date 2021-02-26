@@ -541,17 +541,17 @@ void lbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
 void rbkts_finished (qk_tap_dance_state_t *state, void *user_data) {
   rbkts_state.state = cur_dance(state); //Use the dance that favors being held
   switch (rbkts_state.state) {
-    case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_0); break; // send (
-    case DOUBLE_TAP: register_code(KC_RBRC); break; // send [
-    case TRIPLE_TAP: register_code(KC_LSFT); register_code(KC_RBRC); // send {
+    case SINGLE_TAP: register_code(KC_LSFT); register_code(KC_0); break; // send )
+    case DOUBLE_TAP: register_code(KC_RBRC); break; // send ]
+    case TRIPLE_TAP: register_code(KC_LSFT); register_code(KC_RBRC); // send }
   }
 }
 
 void rbkts_reset (qk_tap_dance_state_t *state, void *user_data) {
   switch (rbkts_state.state) {
-    case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_0); break; // unregister (
-    case DOUBLE_TAP: unregister_code(KC_RBRC); break; // unregister [
-    case TRIPLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_RBRC); // unregsister {
+    case SINGLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_0); break; // unregister )
+    case DOUBLE_TAP: unregister_code(KC_RBRC); break; // unregister ]
+    case TRIPLE_TAP: unregister_code(KC_LSFT); unregister_code(KC_RBRC); // unregsister }
   }
   rbkts_state.state = 0;
 }
