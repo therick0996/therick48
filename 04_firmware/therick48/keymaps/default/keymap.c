@@ -4,17 +4,17 @@
 #define _QW			    0
 #define _LOWER		  1
 #define _RAISE		  2
-#define _FN			    3
+#define _FUNCTION   3
 #define _LWL0 		  4
 #define _LWL1		    5
-#define _FN2        6
+#define _FUNCTION2  6
 
 // Macro keycodes
   enum custom_keycodes {
-  INSROW = SAFE_RANGE,
-  DELROW,
-  INSCOL,
-  DELCOL
+  INS_ROW = SAFE_RANGE,
+  DEL_ROW,
+  INS_COL,
+  DEL_COL
 };
 
 typedef struct {
@@ -150,63 +150,36 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #define FN 		  	  MO(_FN)
 #define FN2         MO(_FN2)
 
-#define LWR_BS 		  LT(_LOWER, KC_BSPC)
-#define RSE_SPC 	  LT(_RAISE, KC_SPC)
-#define RSE_TAB     LT(_RAISE, KC_TAB)
-#define FN_TAB		  LT(_FN, KC_TAB)
-#define FN_ESC		  LT(_FN, KC_ESC)
-#define LWL0_TAB	  LT(_LWL0, KC_TAB)
-#define LWL0_ESC	  LT(_LWL0, KC_ESC)
-#define LWL0_SPC 	  LT(_LWL0, KC_SPC)
-#define LWL1_PSLS	  LT(_LWL1, KC_PSLS)
-#define LWL1_PENT	  LT(_LWL1, KC_PENT)
-#define LWL1_END    LT(_LWL1, KC_END)
-#define LWL1_BS		  LT(_LWL1, KC_BSPC)
-#define FN2_BS      LT(_FN2, KC_BSPC)
+#define LWR(kc)     LT(_LOWER, KC_##kc)
+#define RSE(kc)     LT(_RAISE, KC_##kc)
+#define FN(kc)      LT(_FUNCTION, KC_##kc)
+#define FN2(kc)     LT(_FUNCTION2, KC_##kc)
+#define LWL0(kc)    LT(_LWL0, KC_##kc)
+#define LWL1(kc)    LT(_LWL1, KC_##kc)
 
 // Dual key codes
-#define CTL_A 		  CTL_T(KC_A)
-#define CTL_F 		  CTL_T(KC_F)
-#define CTL_J		    CTL_T(KC_J)
-#define CTL_Z		    CTL_T(KC_Z)
-#define CTL_LEFT	  CTL_T(KC_LEFT)
-#define CTL_RGHT 	  CTL_T(KC_RIGHT)
-#define CTL_HOME	  CTL_T(KC_HOME)
-#define CTL_END		  CTL_T(KC_END)
-#define CTL_SLS		  CTL_T(KC_SLSH)
-
-#define SFT_S 		  SFT_T(KC_S)
-#define SFT_X		    SFT_T(KC_X)
-#define SFT_SPC		  SFT_T(KC_SPC)
-#define SFT_ENT		  SFT_T(KC_ENT)
-#define SFT_DOT		  SFT_T(KC_DOT)
-#define SFT_QUOT	  SFT_T(KC_QUOT)
-#define SFT_DOWN	  SFT_T(KC_DOWN)
-#define SFT_UP 		  SFT_T(KC_UP)
-#define SFT_PGDN	  SFT_T(KC_PGDN)
-#define SFT_PGUP	  SFT_T(KC_PGUP)
-#define SFT_CAPS	  SFT_T(KC_CAPSLOCK)
-
-#define ALT_LEFT    ALT_T(KC_LEFT)
-#define ALT_RGHT    ALT_T(KC_RIGHT)
-#define ALT_UP      ALT_T(KC_UP)
-
-#define CTLHOME     LCTL(KC_HOME)
-#define PRT_SC      LGUI(LSFT(KC_S))
+#define CTL(kc)     LCTL_T(KC_##kc) // Control when held, KC when pressed
+#define GUI(kc)     LGUI_T(KC_##kc) // GUI when held, KC when pressed
+#define SFT(kc)     LSFT_T(KC_##kc) // Shift when held, KC when pressed
+#define ALT(kc)     LALT_T(KC_##kc) // Alt when held, KC when pressed
 
 //Chrome Tabs
-#define CLT_PGDN    LCTL(KC_PGDN)
-#define CLT_PGUP    LCTL(KC_PGUP)
+#define TAB_LEFT    LCTL(KC_PGDN)
+#define TAB_RIGHT   LCTL(KC_PGUP)
 
 // Google Sheets shortcuts
-#define ALT_SUP     LALT(KC_UP)  // Go to next sheet in Sheets
-#define ALT_SDN     LALT(KC_DOWN)  // Go to previous sheet in Sheets
+#define SHT_LEFT    LALT(KC_UP)  // Go to next sheet in Sheets
+#define SHT_RIGHT   LALT(KC_DOWN)  // Go to previous sheet in Sheets
 
-#define HIDEROW     LCTL(LALT(KC_9))  // Hide row
-#define UNHIDEROW   LCTL(LSFT(KC_9))  // Unhide row
-#define HIDECOL     LCTL(LALT(KC_0))  // Hide column
-#define UNIHDECOL   LCTL(LSFT(KC_0))  // Unhide column
+#define HIDE_ROW    LCTL(LALT(KC_9))  // Hide row
+#define UNHIDE_ROW  LCTL(LSFT(KC_9))  // Unhide row
+#define HIDE_COL    LCTL(LALT(KC_0))  // Hide column
+#define UNHIDE_COL  LCTL(LSFT(KC_0))  // Unhide column
 
+// Other
+#define CTL_HOME    LCTL(KC_HOME) // Ctrl + Home
+
+// Begin keymaps
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* QW QWERTY
@@ -223,9 +196,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QW] = LAYOUT_ortho_4x12(
     KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,       KC_T,       KC_Y,       KC_U,       KC_I,       KC_O,       KC_P,       KC_DEL,
-    FN_TAB,     KC_A,       KC_S,       KC_D,       CTL_F,      KC_G,       KC_H,       CTL_J,      KC_K,       KC_L,       KC_SCLN,    SFT_QUOT,
-    KC_LSFT,    CTL_Z,      SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    SFT_ENT,
-    KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR_BS,     FN2_BS,     KC_SPC,     RSE_SPC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
+    FN(TAB),    KC_A,       KC_S,       KC_D,       CTL(F),     KC_G,       KC_H,       CTL(J),     KC_K,       KC_L,       KC_SCLN,    SFT(QUOT),
+    KC_LSFT,    CTL(Z),     SFT_X,      KC_C,       KC_V,       KC_B,       KC_N,       KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    SFT(ENT),
+    KC_LCTL,    KC_LSFT,    KC_LGUI,    KC_LALT,    LWR(BSPC),  FN2(BSPC),  FN(SPC),    RSE(SPC),   KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT
   ),
 
 /* Lower
@@ -242,9 +215,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_ortho_4x12(
     _______,    TD(LBKTS),  TD(RBKTS),  KC_MINS,    TD(SUM),    KC_NO,      KC_NO,      KC_BSPC,     KC_P7,     KC_P8,      KC_P9,      KC_PMNS,
-    LWL0_TAB,   CTL_HOME,   KC_PGDN,    KC_PGUP,    LWL1_END,   KC_BSPC,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
+    LWL0(TAB),  CTL(HOME),  KC_PGDN,    KC_PGUP,    LWL1(END),  KC_BSPC,    KC_F4,      KC_F2,       KC_P4,     KC_P5,      KC_P6,      KC_PPLS,
     _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RGHT,    KC_NO,      _______,    KC_CALC,     KC_P1,     KC_P2,      KC_P3,      KC_PENT,
-    _______,    _______,    _______,    _______,    _______,    _______,    _______,    LWL0_SPC,    KC_P0,     KC_PAST,    KC_PDOT,    KC_PSLS
+    _______,    _______,    _______,    _______,    _______,    _______,    _______,    LWL0(SPC),   KC_P0,     KC_PAST,    KC_PDOT,    KC_PSLS
   ),
 
     /* LWL0
@@ -261,8 +234,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       [_LWL0] = LAYOUT_ortho_4x12(
         _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_BSPC,    KC_PSLS,    KC_PAST,    KC_DEL,
-        _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_DEL,     _______,    _______,    _______,    CTL_LEFT,   SFT_DOWN,   SFT_UP,     KC_RIGHT,
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,
+        _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_DEL,     _______,    _______,    _______,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,
+        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_HOME),   KC_PGDN),   KC_PGUP,    KC_END,
         _______,    _______,    _______,    _______,    _______,    _______,    TG(1),	    _______,    _______,    _______,    _______,    _______
       ),
 
@@ -270,9 +243,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       .-----------------------------------------------------------------------------------------------------------------------------------------------.
       |   RESET   |           |           |           |           |           |           |           |           |           |           |           |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-      |           | Ctl Home  |  Prt Scr  |           |   LWL1    |           |           |           |     $     |     ,     |     %     |           |
+      |           | Ctl+Home  |  Prt Scr  |           |   LWL1    |           |           |           |     $     |     ,     |     %     |           |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-      |           |           |           |           |           |           |           |           |     !     |           |           |           |
+      |   Caps    |           |           |           |           |           |           |           |     !     |           |           |           |
       |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
       |           |           |           |           |           |           |           |           |           |           |  NumLock  |           |
       '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -280,8 +253,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       [_LWL1] = LAYOUT_ortho_4x12(
         RESET,      _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-        _______,    CTLHOME,    PRT_SC,     _______,    _______,    _______,    _______,    _______,    KC_DLR,     KC_COMM,    KC_PERC,    _______,
-        _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_EXLM,    _______,    _______,    _______,
+        _______,    CTL_HOME,   PRT_SC,     _______,    _______,    _______,    _______,    _______,    KC_DLR,     KC_COMM,    KC_PERC,    _______,
+        KC_CAPS,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_EXLM,    _______,    _______,    _______,
         _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    KC_NLCK,    _______
       ),
 
@@ -289,9 +262,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
   |    ` ~    |     1     |     2     |     3     |     4     |     5     |     6     |     7     |     8     |     9     |     0     |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |     !     |     @     |     #     |     $     |     %     |     ^     |     &     |     *     |     (     |     )     |     _     |     +     |
+  |           |     !     |     @     |     #     |     $     |     %     |     ^     |     &     |     *     |     (     |     )     |     _     |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
-  |   Caps    |           |     `     |           |           |           |  Insert   |           |     [     |     ]     |    \ |    |           |
+  |           |           |     `     |           |           |           |  Insert   |           |     [     |     ]     |    \ |    |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |           |           |           |           |           |  TG(Lwr)  |   Raise   |   Play    |   Vol-    |   Vol+    |   Mute    |
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
@@ -299,8 +272,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT_ortho_4x12(
     TD(TILDE),  KC_1,       KC_2,       KC_3,       KC_4,       KC_5,       KC_6,       KC_7,       KC_8,       KC_9,       KC_0,       _______,
-    KC_EXLM,    TD(EMAIL),  KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_UNDS,    KC_PLUS,
-    SFT_CAPS,   _______,    _______,    _______,    _______,    _______,    KC_INS,     _______,    KC_LBRC,    KC_RBRC,    TD(PIPE),   _______,
+    _______,    KC_EXLM,    TD(EMAIL),  KC_HASH,    KC_DLR,     KC_PERC,    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_LPRN,    KC_RPRN,    KC_UNDS,
+    _______,    _______,    _______,    _______,    _______,    _______,    KC_INS,     _______,    KC_LBRC,    KC_RBRC,    TD(PIPE),   _______,
     _______,    _______,    _______,    _______,    _______,    _______,    TG(1),      _______,    KC_MPLY,    KC_VOLD,    KC_VOLU,    KC_MUTE
   ),
 
@@ -316,16 +289,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */
 
-  [_FN] = LAYOUT_ortho_4x12(
+  [_FUNCTION] = LAYOUT_ortho_4x12(
     _______,    KC_F1,      KC_F2,      KC_F3,      KC_F4,      KC_F5,      KC_F6,      KC_F7,      KC_F8,      KC_F9,      KC_F10,     _______,
-    _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_DEL,     _______,    _______,    ALT_LEFT,   KC_DOWN,    KC_UP,      ALT_RGHT,   KC_ENT,
-    _______,    _______,    _______,    TD(MAKE1),  TD(MAKE2),  _______,    _______,    CTL_HOME,   SFT_PGDN,   SFT_PGUP,   CTL_END,    _______,
+    _______,    KC_LCTL,    KC_LSFT,    KC_DEL,     KC_DEL,     _______,    _______,    ALT(LEFT),  KC_DOWN,    KC_UP,      ALT(RIGHT), KC_ENT,
+    _______,    _______,    _______,    TD(MAKE1),  TD(MAKE2),  _______,    _______,    CTL(HOME),  SFT(PGDN),  SFT(PGUP),  CTL(END),   _______,
     _______,    _______,    _______,    _______,    KC_ENT,     _______,    _______,    _______,    _______,    _______,    KC_F11,     KC_F12 
   ),
 
 /* FN2
   .-----------------------------------------------------------------------------------------------------------------------------------------------.
-  |           | Ctrl PgDn | Ctrl PgUp |   AS Up   |   AS Dn   |           |           |           |           |           |           |           |
+  |           |  Tab Left | Tab Right | Sht Left  | Sht Right |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
   |           |  Del Col  |  Ins Col  |  Del Row  |  Ins Row  |           |           |           |           |           |           |           |
   |-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------|
@@ -335,19 +308,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   '-----------------------------------------------------------------------------------------------------------------------------------------------'
 */ 
 
-  [_FN2] = LAYOUT_ortho_4x12(
-    _______,    CLT_PGDN,   CLT_PGUP,   _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    DELCOL,     INSCOL,     DELROW,     INSROW,     _______,    _______,    _______,    _______,    _______,    _______,    _______,
-    _______,    HIDECOL,    UNIHDECOL,  HIDEROW,    UNHIDEROW,  _______,    _______,    _______,    _______,    _______,    _______,    _______,
+  [_FUNCTION2] = LAYOUT_ortho_4x12(
+    _______,    TAB_LEFT,   TAB_RIGHT,  SHT_LEFT,   SHT_RIGHT,  _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    DEL_COL,    INS_COL,    DEL_ROW,    INS_ROW,    _______,    _______,    _______,    _______,    _______,    _______,    _______,
+    _______,    HIDE_COL,   UNHDE_COL,  HIDE_ROW,   UNHIDE_ROW, _______,    _______,    _______,    _______,    _______,    _______,    _______,
     _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______,    _______ 
   )
 
 };
+// End Keymaps
 
 const uint16_t PROGMEM fn_actions[] = {
 
 };
-
 
 /* uint16_t get_tapping_term(uint16_t keycode) {
   switch (keycode) {
@@ -361,43 +334,30 @@ const uint16_t PROGMEM fn_actions[] = {
 } */ 
 
 // Macros
-/* bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case MAKE:
-      if (record->event.pressed) { // when keycode is pressed
-        SEND_STRING("make therick48:default:dfu");
-      } else { // when keycode is released
-      }
-      break;
-  }
-  return true;
-}; */
-
-// Macros
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case INSROW: // Insert row in Sheets
+    case INS_ROW: // Insert row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LALT(SS_LSFT("i") SS_DELAY(250)) "r"); // Alt+Shift+i, r
       } else { // when keycode is released
       }
       break;
 
-    case DELROW: // Delete row in Sheets
+    case DEL_ROW: // Delete row in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LALT(SS_LSFT("e") SS_DELAY(250)) "d"); // Alt+Shift+e, d
       } else { // when keycode is released
       }
       break;
 
-    case INSCOL: // Insert column in Sheets
+    case INS_COL: // Insert column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LALT(SS_LSFT("i") SS_DELAY(250)) "c"); // Alt+Shift+i, c
       } else { // when keycode is released
       }
       break;    
 
-    case DELCOL: // Delete column in Sheets
+    case DEL_COL: // Delete column in Sheets
       if (record->event.pressed) { // when keycode is pressed
         SEND_STRING(SS_LALT(SS_LSFT("e") SS_DELAY(250)) "e"); // Alt+Shift+e, e
       } else { // when keycode is released
