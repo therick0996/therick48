@@ -147,8 +147,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 // Layer codes
 #define LOWER 		  MO(_LOWER)
 #define RAISE 		  MO(_RAISE)
-#define FUNCTION    MO(_FUNCTION)
-#define FUNCTION2   MO(_FUNCTION2)
+#define FUN         MO(_FUNCTION)
+#define FUN2        MO(_FUNCTION2)
 
 //#define LWR_BS 		  LT(_LOWER, KC_BSPC)
 //#define RSE_SPC 	  LT(_RAISE, KC_SPC)
